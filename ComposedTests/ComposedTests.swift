@@ -21,8 +21,23 @@ class ComposedTests: XCTestCase {
         expected = CGRect(x: 75, y: 75, width: 100, height: 100)
         XCTAssertEqual(result, expected)
         
+        result = size.atCorner(.topLeft(point))
+        XCTAssertEqual(result, expected)
+        
         result = size.atCenter(point)
         expected = CGRect(x: 25, y: 25, width: 100, height: 100)
+        XCTAssertEqual(result, expected)
+        
+        result = size.atCorner(.topRight(point))
+        expected = CGRect(x: -25, y: 75, width: 100, height: 100)
+        XCTAssertEqual(result, expected)
+        
+        result = size.atCorner(.bottomLeft(point))
+        expected = CGRect(x: 75, y: -25, width: 100, height: 100)
+        XCTAssertEqual(result, expected)
+        
+        result = size.atCorner(.bottomRight(point))
+        expected = CGRect(x: -25, y: -25, width: 100, height: 100)
         XCTAssertEqual(result, expected)
     }
     

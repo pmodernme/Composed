@@ -42,3 +42,9 @@ public enum Corner {
         }
     }
 }
+
+public extension CGSize {
+    func atCorner(_ corner: Corner) -> CGRect {
+        return corner.rectWithSize(self)
+    }
+}

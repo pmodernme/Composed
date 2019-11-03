@@ -10,10 +10,16 @@ import XCTest
 @testable import Composed
 
 class ComposedTests: XCTestCase {
+    var result: CGRect = .zero
+    var expected: CGRect = .zero
+    
+    override func setUp() {
+        result = .zero
+        expected = .zero
+    }
+    
+    
     func testSizePlacement() {
-        var result: CGRect = .zero
-        var expected: CGRect = .zero
-        
         let size = CGSize(width: 100, height: 100)
         let point = CGPoint(x: 75, y: 75)
         
@@ -41,10 +47,7 @@ class ComposedTests: XCTestCase {
         XCTAssertEqual(result, expected)
     }
     
-    func testCorners() {
-        var result: CGRect = .zero
-        var expected: CGRect = .zero
-        
+    func testCorner() {
         let size = CGSize(width: 100, height: 100)
         let point = CGPoint(x: 75, y: 75)
         
@@ -63,5 +66,34 @@ class ComposedTests: XCTestCase {
         result = Corner.bottomRight(point).rectWithSize(size)
         expected = CGRect(x: -25, y: -25, width: 100, height: 100)
         XCTAssertEqual(result, expected)
+    }
+    
+    func testCorners() {
+        let rect = CGRect(x: 75, y: 75, width: 100, height: 100)
+        let corners = rect.corners
+        
+        if case let Corner.topLeft(point) = corners.topLeft {
+            XCTAssertEqual(point, CGPoint(x: 75, y: 75))
+        } else {
+            XCTAssert(false, "Associated value not captured!")
+        }
+        
+        if case let Corner.topRight(point) = corners.topRight {
+            XCTAssertEqual(point, CGPoint(x: 175, y: 75))
+        } else {
+            XCTAssert(false, "Associated value not captured!")
+        }
+        
+        if case let Corner.bottomLeft(point) = corners.bottomLeft {
+            XCTAssertEqual(point, CGPoint(x: 75, y: 175))
+        } else {
+            XCTAssert(false, "Associated value not captured!")
+        }
+        
+        if case let Corner.bottomRight(point) = corners.bottomRight {
+            XCTAssertEqual(point, CGPoint(x: 175, y: 175))
+        } else {
+            XCTAssert(false, "Associated value not captured!")
+        }
     }
 }

@@ -43,8 +43,23 @@ public enum Corner {
     }
 }
 
-public extension CGSize {
-    func atCorner(_ corner: Corner) -> CGRect {
-        return corner.rectWithSize(self)
+public struct Corners {
+    fileprivate let rect: CGRect
+    
+    init(of rect: CGRect) {
+        self.rect = rect
     }
+    
+    var topLeft: Corner { return .topLeft(CGPoint(x: rect.minX, y: rect.minY)) }
+    var topRight: Corner { return .topRight(CGPoint(x: rect.maxX, y: rect.minY)) }
+    var bottomLeft: Corner { return .bottomLeft(CGPoint(x: rect.minX, y: rect.maxY)) }
+    var bottomRight: Corner { return .bottomRight(CGPoint(x: rect.maxX, y: rect.maxY)) }
+}
+
+public extension CGRect {
+    var corners: Corners { return Corners(of: self) }
+}
+
+public extension CGSize {
+    func atCorner(_ corner: Corner) -> CGRect { return corner.rectWithSize(self) }
 }

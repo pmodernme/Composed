@@ -10,25 +10,21 @@ import XCTest
 @testable import Composed
 
 class ComposedTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testSizePlacement() {
+        var result: CGRect = .zero
+        var expected: CGRect = .zero
+        
+        let size = CGSize(width: 100, height: 100)
+        let point = CGPoint(x: 75, y: 75)
+        
+        result = size.atOrigin(point)
+        expected = CGRect(x: 75, y: 75, width: 100, height: 100)
+        
+        XCTAssertEqual(result, expected)
+        
+        result = size.atCenter(point)
+        expected = CGRect(x: 25, y: 25, width: 100, height: 100)
+        
+        XCTAssertEqual(result, expected)
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

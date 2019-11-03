@@ -29,6 +29,7 @@
 		BFCC0185236F3984004EE0A1 /* ComposedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComposedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFCC018A236F3984004EE0A1 /* ComposedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposedTests.swift; sourceTree = "<group>"; };
 		BFCC018C236F3984004EE0A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFCC0196236F3A2D004EE0A1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +54,7 @@
 		BFCC0172236F3983004EE0A1 = {
 			isa = PBXGroup;
 			children = (
+				BFCC0196236F3A2D004EE0A1 /* README.md */,
 				BFCC017E236F3983004EE0A1 /* Composed */,
 				BFCC0189236F3984004EE0A1 /* ComposedTests */,
 				BFCC017D236F3983004EE0A1 /* Products */,
@@ -353,6 +355,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = io.zvb.Composed;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -377,6 +380,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = io.zvb.Composed;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

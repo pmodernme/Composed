@@ -19,12 +19,34 @@ class ComposedTests: XCTestCase {
         
         result = size.atOrigin(point)
         expected = CGRect(x: 75, y: 75, width: 100, height: 100)
-        
         XCTAssertEqual(result, expected)
         
         result = size.atCenter(point)
         expected = CGRect(x: 25, y: 25, width: 100, height: 100)
+        XCTAssertEqual(result, expected)
+    }
+    
+    func testCorners() {
+        var result: CGRect = .zero
+        var expected: CGRect = .zero
         
+        let size = CGSize(width: 100, height: 100)
+        let point = CGPoint(x: 75, y: 75)
+        
+        result = Corner.topLeft(point).rectWithSize(size)
+        expected = CGRect(x: 75, y: 75, width: 100, height: 100)
+        XCTAssertEqual(result, expected)
+        
+        result = Corner.topRight(point).rectWithSize(size)
+        expected = CGRect(x: -25, y: 75, width: 100, height: 100)
+        XCTAssertEqual(result, expected)
+        
+        result = Corner.bottomLeft(point).rectWithSize(size)
+        expected = CGRect(x: 75, y: -25, width: 100, height: 100)
+        XCTAssertEqual(result, expected)
+        
+        result = Corner.bottomRight(point).rectWithSize(size)
+        expected = CGRect(x: -25, y: -25, width: 100, height: 100)
         XCTAssertEqual(result, expected)
     }
 }

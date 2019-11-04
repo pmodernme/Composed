@@ -14,7 +14,7 @@ public enum Corner {
 //    TODO:
 //    case topLeading, topTrailing, bottomLeading, bottomTrailing
     
-    func rectWithSize(_ size: CGSize) -> CGRect {
+    public func rectWithSize(_ size: CGSize) -> CGRect {
         switch self {
         case .topLeft(let point):
             return CGRect(origin: point, size: size)
@@ -41,19 +41,32 @@ public enum Corner {
             )
         }
     }
+    
+    public var point: CGPoint {
+        switch self {
+        case .topLeft(let point):
+            return point
+        case .topRight(let point):
+            return point
+        case .bottomLeft(let point):
+            return point
+        case .bottomRight(let point):
+            return point
+        }
+    }
 }
 
 public struct Corners {
     fileprivate let rect: CGRect
     
-    init(of rect: CGRect) {
+    fileprivate init(of rect: CGRect) {
         self.rect = rect
     }
     
-    var topLeft: Corner { return .topLeft(CGPoint(x: rect.minX, y: rect.minY)) }
-    var topRight: Corner { return .topRight(CGPoint(x: rect.maxX, y: rect.minY)) }
-    var bottomLeft: Corner { return .bottomLeft(CGPoint(x: rect.minX, y: rect.maxY)) }
-    var bottomRight: Corner { return .bottomRight(CGPoint(x: rect.maxX, y: rect.maxY)) }
+    public var topLeft: Corner { return .topLeft(CGPoint(x: rect.minX, y: rect.minY)) }
+    public var topRight: Corner { return .topRight(CGPoint(x: rect.maxX, y: rect.minY)) }
+    public var bottomLeft: Corner { return .bottomLeft(CGPoint(x: rect.minX, y: rect.maxY)) }
+    public var bottomRight: Corner { return .bottomRight(CGPoint(x: rect.maxX, y: rect.maxY)) }
 }
 
 public extension CGRect {
@@ -61,5 +74,5 @@ public extension CGRect {
 }
 
 public extension CGSize {
-    func atCorner(_ corner: Corner) -> CGRect { return corner.rectWithSize(self) }
+    func setCorner(_ corner: Corner) -> CGRect { return corner.rectWithSize(self) }
 }

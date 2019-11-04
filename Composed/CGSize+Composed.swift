@@ -51,7 +51,7 @@ public extension Array where Element == CGSize {
     }
     
     var intersection: CGSize {
-        return processWidthAndHeight(for: self, initial: .zero, function: Swift.min)
+        return processWidthAndHeight(for: self, initial: .max, function: Swift.min)
     }
 }
 

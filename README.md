@@ -47,6 +47,8 @@ topLabel.frame = topLabel.sizeThatFits(bounds.size)
 )
 ```
 
+![](img/relational.png)
+
 *Using CGGeometry*
 ```swift
 let greenLabelSize = topLabel.sizeThatFits(bounds.size)
@@ -57,8 +59,6 @@ topLabel.frame = CGRect(
     height: greenLabelSize.height
 )
 ```
-
-![](img/relational.png)
 
 ## Author
 

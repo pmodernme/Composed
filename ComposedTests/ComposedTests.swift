@@ -134,4 +134,32 @@ class ComposedTests: XCTestCase {
             CGSize(width: 500, height: 100)
         )
     }
+    
+    func testUnion() {
+        XCTAssertEqual(
+            union(
+                CGSize(width: 100, height: 20),
+                CGSize(width: 10, height: 150),
+                CGSize(width: 2, height: 2),
+                CGSize(width: 125, height: 1)
+            ),
+            CGSize(
+                width: 125,
+                height: 150)
+        )
+    }
+    
+    func testIntersection() {
+        XCTAssertEqual(
+            intersection(
+                CGSize(width: 100, height: 20),
+                CGSize(width: 10, height: 150),
+                CGSize(width: 2, height: 2),
+                CGSize(width: 125, height: 1)
+            ),
+            CGSize(
+                width: 2,
+                height: 1)
+        )
+    }
 }

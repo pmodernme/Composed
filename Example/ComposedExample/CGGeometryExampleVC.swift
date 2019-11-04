@@ -10,7 +10,12 @@ import UIKit
 
 class CGGeometryExampleVC: UIViewController {
     override func loadView() {
-        self.view = CGGeometryExampleView()
+        view = CGGeometryExampleView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
     }
 }
 
@@ -27,6 +32,7 @@ class CGGeometryExampleView: UIView {
         l.text = "CGGeometry"
         l.numberOfLines = 0
         l.font = .preferredFont(forTextStyle: .title1)
+        l.adjustsFontForContentSizeCategory = true
         l.textColor = .systemRed
         addSubview(l)
         return l
@@ -36,7 +42,9 @@ class CGGeometryExampleView: UIView {
         let l = UILabel()
         l.text = "Not so easy..."
         l.numberOfLines = 0
+        l.lineBreakMode = .byTruncatingTail
         l.font = .preferredFont(forTextStyle: .title2)
+        l.adjustsFontForContentSizeCategory = true
         l.textColor = .systemBackground
         addSubview(l)
         return l
@@ -67,7 +75,8 @@ class CGGeometryExampleView: UIView {
         )
         
         let insetBox = boxView.frame.insetBy(dx: 6, dy: 4)
-        let bottomLabelSize = bottomLabel.sizeThatFits(insetBox.size)
+        var bottomLabelSize = bottomLabel.sizeThatFits(insetBox.size)
+        bottomLabelSize.height = min(bottomLabelSize.height, insetBox.height)
         bottomLabel.frame = CGRect(
             x: insetBox.maxX - bottomLabelSize.width,
             y: insetBox.maxY - bottomLabelSize.height,

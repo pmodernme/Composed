@@ -28,4 +28,34 @@ public extension CGSize {
     func expandedBy(x: CGFloat, y: CGFloat) -> CGSize {
         return insetBy(x: -x, y: -y)
     }
+    
+    static var max: CGSize {
+        return CGSize(
+            width: CGFloat.greatestFiniteMagnitude,
+            height: CGFloat.greatestFiniteMagnitude
+        )
+    }
+}
+
+public func intersection(_ sizes: CGSize...) -> CGSize {
+    return intersection(sizes)
+}
+public func intersection(_ sizes: [CGSize]) -> CGSize {
+    return processWidthAndHeight(for: sizes, initial: .max, function: min)
+}
+
+public func union(_ sizes: CGSize...) -> CGSize {
+    return union(sizes)
+}
+public func union(_ sizes: [CGSize]) -> CGSize {
+    return processWidthAndHeight(for: sizes, initial: .zero, function: max)
+}
+
+private func processWidthAndHeight(for sizes: [CGSize], initial: CGSize, function: (CGFloat, CGFloat) -> CGFloat) -> CGSize {
+    return sizes.reduce(initial) { (result, size) -> CGSize in
+        return CGSize(
+            width: function(size.width, result.width),
+            height: function(size.height, result.height)
+        )
+    }
 }

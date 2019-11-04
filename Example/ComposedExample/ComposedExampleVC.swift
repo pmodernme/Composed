@@ -11,7 +11,12 @@ import Composed
 
 class ComposedExampleVC: UIViewController {
     override func loadView() {
-        self.view = ComposedExampleView()
+        view = ComposedExampleView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
     }
 }
 
@@ -28,6 +33,7 @@ class ComposedExampleView: UIView {
         l.text = "Composed"
         l.numberOfLines = 0
         l.font = .preferredFont(forTextStyle: .title1)
+        l.adjustsFontForContentSizeCategory = true
         l.textColor = .systemGreen
         addSubview(l)
         return l
@@ -38,6 +44,7 @@ class ComposedExampleView: UIView {
         l.text = "So Easy!"
         l.numberOfLines = 0
         l.font = .preferredFont(forTextStyle: .title2)
+        l.adjustsFontForContentSizeCategory = true
         l.textColor = .systemBackground
         addSubview(l)
         return l
@@ -59,12 +66,13 @@ class ComposedExampleView: UIView {
         )
         
         let insetBox = boxView.frame.insetBy(dx: 6, dy: 4)
-        bottomLabel.frame = bottomLabel
-            .sizeThatFits(insetBox.size)
-            .setCorner(
-                .bottomRight(
-                    insetBox.corners.bottomRight.point
-                )
+        bottomLabel.frame = intersection(
+            bottomLabel.sizeThatFits(insetBox.size),
+            insetBox.size
+        ).setCorner(
+            .bottomRight(
+                insetBox.corners.bottomRight.point
+            )
         )
     }
 }

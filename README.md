@@ -1,7 +1,5 @@
 #  Composed
 
----
-
 **Make designing views in `layoutSubviews()` simpler with extensions to `CGGeometry` structs such as `CGRect`, `CGSize`, and `CGPoint`.**
 
 Composed is in its early stages of development. Thanks for your interest!
@@ -47,6 +45,15 @@ topLabel.frame = topLabel
         )
 )
 
+let insetBox = boxView.frame.insetBy(dx: 6, dy: 4)
+bottomLabel.frame = bottomLabel
+    .sizeThatFits(insetBox.size)
+    .setCorner(
+        .bottomRight(
+            insetBox.corners.bottomRight.point
+        )
+)
+
 // CGGeometry
 let topLabelSize = topLabel.sizeThatFits(
     CGSize(
@@ -59,6 +66,15 @@ topLabel.frame = CGRect(
     y: boxView.frame.minY - (topLabelSize.height + 4),
     width: topLabelSize.width,
     height: topLabelSize.height
+)
+
+let insetBox = boxView.frame.insetBy(dx: 6, dy: 4)
+let bottomLabelSize = bottomLabel.sizeThatFits(insetBox.size)
+bottomLabel.frame = CGRect(
+    x: insetBox.maxX - bottomLabelSize.width,
+    y: insetBox.maxY - bottomLabelSize.height,
+    width: bottomLabelSize.width,
+    height: bottomLabelSize.height
 )
 ```
 

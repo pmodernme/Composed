@@ -25,6 +25,7 @@ class CGGeometryExampleView: UIView {
     lazy var topLabel: UIView = {
         let l = UILabel()
         l.text = "CGGeometry"
+        l.numberOfLines = 0
         l.font = .preferredFont(forTextStyle: .title1)
         l.textColor = .systemRed
         addSubview(l)
@@ -33,7 +34,8 @@ class CGGeometryExampleView: UIView {
     
     lazy var bottomLabel: UIView = {
         let l = UILabel()
-        l.text = "Very messy..."
+        l.text = "Not so easy..."
+        l.numberOfLines = 0
         l.font = .preferredFont(forTextStyle: .title2)
         l.textColor = .systemBackground
         addSubview(l)
@@ -43,29 +45,35 @@ class CGGeometryExampleView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let greenSize = CGSize(width: 200, height: 125)
+        let boxSize = CGSize(width: 200, height: 125)
         boxView.frame = CGRect(
-            x: bounds.midX - greenSize.width/2,
-            y: bounds.midY - greenSize.height/2,
-            width: greenSize.width,
-            height: greenSize.height
+            x: bounds.midX - boxSize.width/2,
+            y: bounds.midY - boxSize.height/2,
+            width: boxSize.width,
+            height: boxSize.height
         )
         
-        let greenLabelSize = topLabel.sizeThatFits(bounds.size)
+        let topLabelSize = topLabel.sizeThatFits(
+            CGSize(
+                width: boxSize.width,
+                height: .greatestFiniteMagnitude
+            )
+        )
         topLabel.frame = CGRect(
             x: boxView.frame.minX,
-            y: boxView.frame.minY - (greenLabelSize.height + 4),
-            width: greenLabelSize.width,
-            height: greenLabelSize.height
+            y: boxView.frame.minY - (topLabelSize.height + 4),
+            width: topLabelSize.width,
+            height: topLabelSize.height
         )
         
-//        let sizeLabelSize = bottomLabel.sizeThatFits(bounds.size)
-//        bottomLabel.frame = CGRect(
-//            x: boxView.frame.maxX - (sizeLabelSize.width + 6),
-//            y: boxView.frame.maxY - (sizeLabelSize.height + 4),
-//            width: sizeLabelSize.width,
-//            height: sizeLabelSize.height
-//        )
+        let insetBox = boxView.frame.insetBy(dx: 6, dy: 4)
+        let bottomLabelSize = bottomLabel.sizeThatFits(insetBox.size)
+        bottomLabel.frame = CGRect(
+            x: insetBox.maxX - bottomLabelSize.width,
+            y: insetBox.maxY - bottomLabelSize.height,
+            width: bottomLabelSize.width,
+            height: bottomLabelSize.height
+        )
     }
 }
 

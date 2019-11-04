@@ -26,6 +26,7 @@ class ComposedExampleView: UIView {
     lazy var topLabel: UIView = {
         let l = UILabel()
         l.text = "Composed"
+        l.numberOfLines = 0
         l.font = .preferredFont(forTextStyle: .title1)
         l.textColor = .systemGreen
         addSubview(l)
@@ -35,6 +36,7 @@ class ComposedExampleView: UIView {
     lazy var bottomLabel: UIView = {
         let l = UILabel()
         l.text = "So Easy!"
+        l.numberOfLines = 0
         l.font = .preferredFont(forTextStyle: .title2)
         l.textColor = .systemBackground
         addSubview(l)
@@ -47,21 +49,23 @@ class ComposedExampleView: UIView {
         boxView.frame = CGSize(width: 200, height: 125)
             .setCenter(bounds.center)
         
-        topLabel.frame = topLabel.sizeThatFits(bounds.size)
+        topLabel.frame = topLabel
+            .sizeThatFits(width: boxView.frame.width)
             .setCorner(
                 .bottomLeft(
                     boxView.frame.corners.topLeft.point
-                        .offset(by: CGPoint(x: 0, y: -4))
+                        .offsetBy(x: 0, y: -4)
                 )
         )
         
-//        bottomLabel.frame = bottomLabel.sizeThatFits(bounds.size)
-//            .setCorner(
-//                .bottomRight(
-//                    boxView.frame.corners.bottomRight.point
-//                        .offset(by: CGPoint(x: -6, y: -4))
-//                )
-//        )
+        let insetBox = boxView.frame.insetBy(dx: 6, dy: 4)
+        bottomLabel.frame = bottomLabel
+            .sizeThatFits(insetBox.size)
+            .setCorner(
+                .bottomRight(
+                    insetBox.corners.bottomRight.point
+                )
+        )
     }
 }
 

@@ -23,12 +23,12 @@ boxView.frame = CGSize(width: 200, height: 125)
     .setCenter(bounds.center)
     
 // CGGeometry
-let greenSize = CGSize(width: 200, height: 125)
+let boxSize = CGSize(width: 200, height: 125)
 boxView.frame = CGRect(
-    x: bounds.midX - greenSize.width/2,
-    y: bounds.midY - greenSize.height/2,
-    width: greenSize.width,
-    height: greenSize.height
+    x: bounds.midX - boxSize.width/2,
+    y: bounds.midY - boxSize.height/2,
+    width: boxSize.width,
+    height: boxSize.height
 )
 ```
 
@@ -38,21 +38,27 @@ You can chain functions referencing another `CGRect`'s geometry.
 
 ```swift
 // Composed
-topLabel.frame = topLabel.sizeThatFits(bounds.size)
+topLabel.frame = topLabel
+    .sizeThatFits(width: boxView.frame.width)
     .setCorner(
         .bottomLeft(
             boxView.frame.corners.topLeft.point
-                .offset(by: CGPoint(x: 0, y: -4))
+                .offsetBy(x: 0, y: -4)
         )
 )
 
 // CGGeometry
-let greenLabelSize = topLabel.sizeThatFits(bounds.size)
+let topLabelSize = topLabel.sizeThatFits(
+    CGSize(
+        width: boxSize.width,
+        height: .greatestFiniteMagnitude
+    )
+)
 topLabel.frame = CGRect(
     x: boxView.frame.minX,
-    y: boxView.frame.minY - (greenLabelSize.height + 4),
-    width: greenLabelSize.width,
-    height: greenLabelSize.height
+    y: boxView.frame.minY - (topLabelSize.height + 4),
+    width: topLabelSize.width,
+    height: topLabelSize.height
 )
 ```
 

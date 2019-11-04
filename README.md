@@ -15,16 +15,14 @@ Composed is in its early stages of development. Thanks for your interest!
 
 ## Usage
 
-The core concept of layout using **Composed** is making manual layout easier to read.
+The core concept of layout using `Composed` is making manual layout easier to read.
 
-*Using Composed*
 ```swift
+// Composed
 boxView.frame = CGSize(width: 200, height: 125)
     .setCenter(bounds.center)
-```
-
-*Using CGGeometry*
-```swift
+    
+// CGGeometry
 let greenSize = CGSize(width: 200, height: 125)
 boxView.frame = CGRect(
     x: bounds.midX - greenSize.width/2,
@@ -36,8 +34,10 @@ boxView.frame = CGRect(
 
 You can chain functions referencing another `CGRect`'s geometry.
 
-*Using Composed*
+![](img/relational.png)
+
 ```swift
+// Composed
 topLabel.frame = topLabel.sizeThatFits(bounds.size)
     .setCorner(
         .bottomLeft(
@@ -45,12 +45,8 @@ topLabel.frame = topLabel.sizeThatFits(bounds.size)
                 .offset(by: CGPoint(x: 0, y: -4))
         )
 )
-```
 
-![](img/relational.png)
-
-*Using CGGeometry*
-```swift
+// CGGeometry
 let greenLabelSize = topLabel.sizeThatFits(bounds.size)
 topLabel.frame = CGRect(
     x: boxView.frame.minX,

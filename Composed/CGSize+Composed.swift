@@ -20,4 +20,12 @@ public extension CGSize {
             width: width,
             height: height)
     }
+    
+    func insetBy(x: CGFloat, y: CGFloat) -> CGSize {
+        return CGSize(width: width - x, height: height - y)
+    }
+    
+    func expandedBy(x: CGFloat, y: CGFloat) -> CGSize {
+        return insetBy(x: -x, y: -y)
+    }
 }

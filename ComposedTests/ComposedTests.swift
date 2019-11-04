@@ -102,4 +102,36 @@ class ComposedTests: XCTestCase {
         
         XCTAssertEqual(rect.center, CGPoint(x: 150, y: 75))
     }
+    
+    func testInsetSize() {
+        let size = CGSize(width: 100, height: 50)
+        
+        XCTAssertEqual(
+            size.insetBy(x: 10, y: 15),
+            CGSize(width: 90, height: 35)
+        )
+        
+        XCTAssertEqual(
+            size.expandedBy(x: 10, y: 15),
+            CGSize(width: 110, height: 65)
+        )
+    }
+    
+    func testSizeThatFits() {
+        class TestView: UIView {
+            override func sizeThatFits(_ size: CGSize) -> CGSize {
+                return CGSize(
+                    width: size.width,
+                    height: min(size.height, 100)
+                )
+            }
+        }
+        
+        let view = TestView()
+        
+        XCTAssertEqual(
+            view.sizeThatFits(width: 500),
+            CGSize(width: 500, height: 100)
+        )
+    }
 }

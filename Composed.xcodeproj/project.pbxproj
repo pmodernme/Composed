@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BFB3C86923709A70007B72D5 /* CGPoint+Composed.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB3C86823709A70007B72D5 /* CGPoint+Composed.swift */; };
+		BFB3C86D2370B155007B72D5 /* UIView+Composed.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB3C86C2370B155007B72D5 /* UIView+Composed.swift */; };
 		BFCC0186236F3984004EE0A1 /* Composed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCC017C236F3983004EE0A1 /* Composed.framework */; };
 		BFCC018B236F3984004EE0A1 /* ComposedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCC018A236F3984004EE0A1 /* ComposedTests.swift */; };
 		BFCC018D236F3984004EE0A1 /* Composed.h in Headers */ = {isa = PBXBuildFile; fileRef = BFCC017F236F3983004EE0A1 /* Composed.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		BFB3C86823709A70007B72D5 /* CGPoint+Composed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Composed.swift"; sourceTree = "<group>"; };
+		BFB3C86C2370B155007B72D5 /* UIView+Composed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Composed.swift"; sourceTree = "<group>"; };
 		BFCC017C236F3983004EE0A1 /* Composed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Composed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFCC017F236F3983004EE0A1 /* Composed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Composed.h; sourceTree = "<group>"; };
 		BFCC0180236F3983004EE0A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				BFCC01EF236F510A004EE0A1 /* CGRect+Composed.swift */,
 				BFCC0199236F3C82004EE0A1 /* CGSize+Composed.swift */,
 				BFB3C86823709A70007B72D5 /* CGPoint+Composed.swift */,
+				BFB3C86C2370B155007B72D5 /* UIView+Composed.swift */,
 				BFCC019D236F3EB3004EE0A1 /* Corner.swift */,
 				BFCC0180236F3983004EE0A1 /* Info.plist */,
 			);
@@ -210,6 +213,7 @@
 			files = (
 				BFCC019E236F3EB3004EE0A1 /* Corner.swift in Sources */,
 				BFCC01F0236F510A004EE0A1 /* CGRect+Composed.swift in Sources */,
+				BFB3C86D2370B155007B72D5 /* UIView+Composed.swift in Sources */,
 				BFB3C86923709A70007B72D5 /* CGPoint+Composed.swift in Sources */,
 				BFCC019A236F3C82004EE0A1 /* CGSize+Composed.swift in Sources */,
 			);

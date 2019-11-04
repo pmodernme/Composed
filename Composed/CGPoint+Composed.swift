@@ -10,9 +10,13 @@ import UIKit
 
 public extension CGPoint {
     func offset(by offset: CGPoint) -> CGPoint {
+        return offsetBy(x: offset.x, y: offset.y)
+    }
+    
+    func offsetBy(x: CGFloat, y: CGFloat) -> CGPoint {
         return CGPoint(
-            x: x + offset.x,
-            y: y + offset.y
+            x: self.x + x,
+            y: self.y + y
         )
     }
 }

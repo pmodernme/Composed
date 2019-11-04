@@ -37,18 +37,22 @@ public extension CGSize {
     }
 }
 
-public func intersection(_ sizes: CGSize...) -> CGSize {
-    return intersection(sizes)
-}
-public func intersection(_ sizes: [CGSize]) -> CGSize {
-    return processWidthAndHeight(for: sizes, initial: .max, function: min)
+public func union(_ sizes: CGSize...) -> CGSize {
+    return sizes.union
 }
 
-public func union(_ sizes: CGSize...) -> CGSize {
-    return union(sizes)
+public func intersection(_ sizes: CGSize...) -> CGSize {
+    return sizes.intersection
 }
-public func union(_ sizes: [CGSize]) -> CGSize {
-    return processWidthAndHeight(for: sizes, initial: .zero, function: max)
+
+public extension Array where Element == CGSize {
+    var union: CGSize {
+        return processWidthAndHeight(for: self, initial: .zero, function: Swift.max)
+    }
+    
+    var intersection: CGSize {
+        return processWidthAndHeight(for: self, initial: .zero, function: Swift.min)
+    }
 }
 
 private func processWidthAndHeight(for sizes: [CGSize], initial: CGSize, function: (CGFloat, CGFloat) -> CGFloat) -> CGSize {

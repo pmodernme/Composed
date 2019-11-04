@@ -9,11 +9,11 @@
 import UIKit
 
 public extension CGSize {
-    func atOrigin(_ origin: CGPoint) -> CGRect {
+    func setOrigin(_ origin: CGPoint) -> CGRect {
         return CGRect(origin: origin, size: self)
     }
     
-    func atCenter(_ center: CGPoint) -> CGRect {
+    func setCenter(_ center: CGPoint) -> CGRect {
         return CGRect(
             x: center.x - width/2 ,
             y: center.y - height/2,

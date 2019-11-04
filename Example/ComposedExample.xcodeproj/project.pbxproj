@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BFB3C86B2370A2BA007B72D5 /* CGGeometryExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB3C86A2370A2BA007B72D5 /* CGGeometryExampleVC.swift */; };
 		BFCC01D1236F4C9B004EE0A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCC01D0236F4C9B004EE0A1 /* AppDelegate.swift */; };
 		BFCC01D3236F4C9B004EE0A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCC01D2236F4C9B004EE0A1 /* SceneDelegate.swift */; };
-		BFCC01D5236F4C9B004EE0A1 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCC01D4236F4C9B004EE0A1 /* ExampleViewController.swift */; };
+		BFCC01D5236F4C9B004EE0A1 /* ComposedExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCC01D4236F4C9B004EE0A1 /* ComposedExampleVC.swift */; };
 		BFCC01DA236F4C9D004EE0A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFCC01D9236F4C9D004EE0A1 /* Assets.xcassets */; };
 		BFCC01DD236F4C9D004EE0A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCC01DB236F4C9D004EE0A1 /* LaunchScreen.storyboard */; };
 		BFCC01E5236F4E47004EE0A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCC01E4236F4E47004EE0A1 /* Main.storyboard */; };
@@ -34,10 +35,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BFB3C86A2370A2BA007B72D5 /* CGGeometryExampleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGGeometryExampleVC.swift; sourceTree = "<group>"; };
 		BFCC01CD236F4C9B004EE0A1 /* ComposedExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComposedExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFCC01D0236F4C9B004EE0A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFCC01D2236F4C9B004EE0A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BFCC01D4236F4C9B004EE0A1 /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
+		BFCC01D4236F4C9B004EE0A1 /* ComposedExampleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposedExampleVC.swift; sourceTree = "<group>"; };
 		BFCC01D9236F4C9D004EE0A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFCC01DC236F4C9D004EE0A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFCC01DE236F4C9D004EE0A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,7 +84,8 @@
 				BFCC01D0236F4C9B004EE0A1 /* AppDelegate.swift */,
 				BFCC01D2236F4C9B004EE0A1 /* SceneDelegate.swift */,
 				BFCC01E4236F4E47004EE0A1 /* Main.storyboard */,
-				BFCC01D4236F4C9B004EE0A1 /* ExampleViewController.swift */,
+				BFCC01D4236F4C9B004EE0A1 /* ComposedExampleVC.swift */,
+				BFB3C86A2370A2BA007B72D5 /* CGGeometryExampleVC.swift */,
 				BFCC01EB236F4FA7004EE0A1 /* UIViewControllerPreview.swift */,
 				BFCC01EC236F4FA7004EE0A1 /* UIViewPreview.swift */,
 				BFCC01D9236F4C9D004EE0A1 /* Assets.xcassets */,
@@ -173,7 +176,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFCC01EE236F4FA7004EE0A1 /* UIViewPreview.swift in Sources */,
-				BFCC01D5236F4C9B004EE0A1 /* ExampleViewController.swift in Sources */,
+				BFB3C86B2370A2BA007B72D5 /* CGGeometryExampleVC.swift in Sources */,
+				BFCC01D5236F4C9B004EE0A1 /* ComposedExampleVC.swift in Sources */,
 				BFCC01D1236F4C9B004EE0A1 /* AppDelegate.swift in Sources */,
 				BFCC01D3236F4C9B004EE0A1 /* SceneDelegate.swift in Sources */,
 				BFCC01ED236F4FA7004EE0A1 /* UIViewControllerPreview.swift in Sources */,

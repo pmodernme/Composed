@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension CGPoint {
+public extension CGPoint {
     func offset(by offset: CGPoint) -> CGPoint {
         return CGPoint(
             x: x + offset.x,

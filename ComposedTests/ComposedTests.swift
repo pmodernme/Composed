@@ -72,20 +72,34 @@ class ComposedTests: XCTestCase {
         let rect = CGRect(x: 75, y: 75, width: 100, height: 100)
         let corners = rect.corners
         
-        if case let Corner.topLeft(point) = corners.topLeft {
-            XCTAssertEqual(point, CGPoint(x: 75, y: 75))
-        }
+        XCTAssertEqual(corners.topLeft.point, CGPoint(x: 75, y: 75))
+        XCTAssertEqual(corners.topRight.point, CGPoint(x: 175, y: 75))
+        XCTAssertEqual(corners.bottomLeft.point, CGPoint(x: 75, y: 175))
+        XCTAssertEqual(corners.bottomRight.point, CGPoint(x: 175, y: 175))
+    }
+    
+    func testOffset() {
+        let point = CGPoint(x: 50, y: 50)
         
-        if case let Corner.topRight(point) = corners.topRight {
-            XCTAssertEqual(point, CGPoint(x: 175, y: 75))
-        }
+        XCTAssertEqual(
+            point.offset(by: CGPoint(x: 25, y: 25)),
+            CGPoint(x: 75, y: 75)
+        )
         
-        if case let Corner.bottomLeft(point) = corners.bottomLeft {
-            XCTAssertEqual(point, CGPoint(x: 75, y: 175))
-        }
+        XCTAssertEqual(
+            point.offset(by: CGPoint(x: -25, y: -25)),
+            CGPoint(x: 25, y: 25)
+        )
         
-        if case let Corner.bottomRight(point) = corners.bottomRight {
-            XCTAssertEqual(point, CGPoint(x: 175, y: 175))
-        }
+        XCTAssertEqual(
+            point.offset(by: CGPoint(x: -25, y: 25)),
+            CGPoint(x: 25, y: 75)
+        )
+    }
+    
+    func testCenter() {
+        let rect = CGRect(x: 50, y: 25, width: 200, height: 100)
+        
+        XCTAssertEqual(rect.center, CGPoint(x: 150, y: 75))
     }
 }

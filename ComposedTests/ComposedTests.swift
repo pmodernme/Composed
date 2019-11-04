@@ -23,26 +23,26 @@ class ComposedTests: XCTestCase {
         let size = CGSize(width: 100, height: 100)
         let point = CGPoint(x: 75, y: 75)
         
-        result = size.atOrigin(point)
+        result = size.setOrigin(point)
         expected = CGRect(x: 75, y: 75, width: 100, height: 100)
         XCTAssertEqual(result, expected)
         
-        result = size.atCorner(.topLeft(point))
+        result = size.setCorner(.topLeft(point))
         XCTAssertEqual(result, expected)
         
-        result = size.atCenter(point)
+        result = size.setCenter(point)
         expected = CGRect(x: 25, y: 25, width: 100, height: 100)
         XCTAssertEqual(result, expected)
         
-        result = size.atCorner(.topRight(point))
+        result = size.setCorner(.topRight(point))
         expected = CGRect(x: -25, y: 75, width: 100, height: 100)
         XCTAssertEqual(result, expected)
         
-        result = size.atCorner(.bottomLeft(point))
+        result = size.setCorner(.bottomLeft(point))
         expected = CGRect(x: 75, y: -25, width: 100, height: 100)
         XCTAssertEqual(result, expected)
         
-        result = size.atCorner(.bottomRight(point))
+        result = size.setCorner(.bottomRight(point))
         expected = CGRect(x: -25, y: -25, width: 100, height: 100)
         XCTAssertEqual(result, expected)
     }
@@ -74,26 +74,18 @@ class ComposedTests: XCTestCase {
         
         if case let Corner.topLeft(point) = corners.topLeft {
             XCTAssertEqual(point, CGPoint(x: 75, y: 75))
-        } else {
-            XCTAssert(false, "Associated value not captured!")
         }
         
         if case let Corner.topRight(point) = corners.topRight {
             XCTAssertEqual(point, CGPoint(x: 175, y: 75))
-        } else {
-            XCTAssert(false, "Associated value not captured!")
         }
         
         if case let Corner.bottomLeft(point) = corners.bottomLeft {
             XCTAssertEqual(point, CGPoint(x: 75, y: 175))
-        } else {
-            XCTAssert(false, "Associated value not captured!")
         }
         
         if case let Corner.bottomRight(point) = corners.bottomRight {
             XCTAssertEqual(point, CGPoint(x: 175, y: 175))
-        } else {
-            XCTAssert(false, "Associated value not captured!")
         }
     }
 }

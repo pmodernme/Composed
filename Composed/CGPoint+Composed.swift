@@ -19,7 +19,7 @@ public extension CGPoint {
     ///   A point that is offset by the x value of `offset` in the x-axis
     ///   and by its y value in the y-axis with respect to the receiver.
     func offset(by offset: CGPoint) -> CGPoint {
-        return offsetBy(dx: offset.x, dy: offset.y)
+        return self + offset
     }
     
     /// Returns a point that is offset from that of the receiver.
@@ -32,10 +32,7 @@ public extension CGPoint {
     ///   A point that is offset from the receiver by `dx` units
     ///   along the x-axis and `dy` units along the y-axis.
     func offsetBy(dx: CGFloat, dy: CGFloat) -> CGPoint {
-        return CGPoint(
-            x: x + dx,
-            y: y + dy
-        )
+        return offset(by: CGPoint(x: dx, y: dy))
     }
 }
 

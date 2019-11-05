@@ -82,17 +82,17 @@ class ComposedTests: XCTestCase {
         let point = CGPoint(x: 50, y: 50)
         
         XCTAssertEqual(
-            point.offset(by: CGPoint(x: 25, y: 25)),
+            point.offsetBy(dx: 25, dy: 25),
             CGPoint(x: 75, y: 75)
         )
         
         XCTAssertEqual(
-            point.offset(by: CGPoint(x: -25, y: -25)),
+            point.offsetBy(dx: -25, dy: -25),
             CGPoint(x: 25, y: 25)
         )
         
         XCTAssertEqual(
-            point.offset(by: CGPoint(x: -25, y: 25)),
+            point.offsetBy(dx: -25, dy: 25),
             CGPoint(x: 25, y: 75)
         )
     }

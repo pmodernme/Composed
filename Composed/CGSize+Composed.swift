@@ -30,24 +30,30 @@ public extension CGSize {
             height: height)
     }
     
-    /// Returns a `CGSize` by subtracting `x` and `y`
-    /// from the receiver's `width` and `height` respectively.
+    /// Returns a `CGSize` that is smaller or larger than the receiver.
     ///
     /// - Parameters:
-    ///   - x: The value to subract from `width`
-    ///   - y: The value to subtract from `height`
-    func insetBy(x: CGFloat, y: CGFloat) -> CGSize {
-        return CGSize(width: width - x, height: height - y)
+    ///   - dx: The x-coordinate value to use for adjusting the
+    ///   receiver. Specify a negative value to create a larger size.
+    ///   - dy: The y-coordinate value to use for adjusting the
+    ///   receiver. Specify a negative value to create a larger size.
+    ///
+    /// - Returns:
+    ///   A `CGSize` adjusted by `(2*dx, 2*dy)`. If dx and dy
+    ///   are positive values, then the size is decreased. If dx and dy
+    ///   are negative values, the size is increased.
+    func insetBy(dx: CGFloat, dy: CGFloat) -> CGSize {
+        return CGSize(width: width - (2*dx), height: height - (2*dy))
     }
     
-    /// Returns a `CGSize` by adding `x` and `y` to
+    /// Returns a `CGSize` by adding `2*x` and `2*y` to
     /// the receiver's `width` and `height` respectively.
     ///
     /// - Parameters:
-    ///   - x: The value to add to `width`
-    ///   - y: The value to add to `height`
-    func expandedBy(x: CGFloat, y: CGFloat) -> CGSize {
-        return insetBy(x: -x, y: -y)
+    ///   - dx: The value to add to `width`
+    ///   - dy: The value to add to `height`
+    func expandedBy(dx: CGFloat, dy: CGFloat) -> CGSize {
+        return insetBy(dx: -dx, dy: -dy)
     }
     
     /// The `CGSize` whose `width` and `height`
@@ -99,5 +105,30 @@ public extension Array where Element == CGSize {
                 height: function(size.height, result.height)
             )
         }
+    }
+}
+
+extension CGSize: AdditiveArithmetic {
+    public static func + (left: CGSize, right: CGSize) -> CGSize {
+        return CGSize(
+            width: left.width + right.width,
+            height: left.height + right.height
+        )
+    }
+    
+    public static func - (lhs: CGSize, rhs: CGSize) -> CGSize {
+        return lhs + -rhs
+    }
+    
+    public static func += (lhs: inout CGSize, rhs: CGSize) {
+        lhs = lhs + rhs
+    }
+    
+    public static func -= (lhs: inout CGSize, rhs: CGSize) {
+        lhs = lhs - rhs
+    }
+    
+    public static prefix func - (value: CGSize) -> CGSize {
+        return CGSize(width: -value.width, height: -value.height)
     }
 }

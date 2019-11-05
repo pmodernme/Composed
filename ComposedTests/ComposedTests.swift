@@ -107,14 +107,38 @@ class ComposedTests: XCTestCase {
         let size = CGSize(width: 100, height: 50)
         
         XCTAssertEqual(
-            size.insetBy(x: 10, y: 15),
-            CGSize(width: 90, height: 35)
+            size.insetBy(dx: 5, dy: 10),
+            CGSize(width: 90, height: 30)
         )
         
         XCTAssertEqual(
-            size.expandedBy(x: 10, y: 15),
-            CGSize(width: 110, height: 65)
+            size.expandedBy(dx: 10, dy: 15),
+            CGSize(width: 120, height: 80)
         )
+        
+        XCTAssertEqual(
+            size + CGSize(width: 5, height: 10),
+            CGSize(width: 105, height: 60)
+        )
+        
+        XCTAssertEqual(
+            size - CGSize(width: 5, height: 10),
+            CGSize(width: 95, height: 40)
+        )
+    }
+    
+    func testInOutArithmetic() {
+        let originalSize = CGSize(width: 100, height: 50)
+        let otherSize = CGSize(width: 5, height: 10)
+        
+        var size = originalSize
+        
+        size += otherSize
+        XCTAssertEqual(size, CGSize(width: 105, height: 60))
+        
+        size = originalSize
+        size -= otherSize
+        XCTAssertEqual(size, CGSize(width: 95, height: 40))
     }
     
     func testSizeThatFits() {

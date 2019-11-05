@@ -9,14 +9,32 @@
 import UIKit
 
 public extension CGPoint {
+    
+    /// Returns a point that is offset from that of the receiver.
+    ///
+    /// - Parameters:
+    ///   - offset: The offset values for the x and y coordinates.
+    ///
+    /// - Returns:
+    ///   A point that is offset by the x value of `offset` in the x-axis
+    ///   and by its y value in the y-axis with respect to the receiver.
     func offset(by offset: CGPoint) -> CGPoint {
-        return offsetBy(x: offset.x, y: offset.y)
+        return offsetBy(dx: offset.x, dy: offset.y)
     }
     
-    func offsetBy(x: CGFloat, y: CGFloat) -> CGPoint {
+    /// Returns a point that is offset from that of the receiver.
+    ///
+    /// - Parameters:
+    ///   - dx: The offset value for the x-coordinate.
+    ///   - dy: The offset value for the y-coordinate.
+    ///
+    /// - Returns:
+    ///   A point that is offset from the receiver by `dx` units
+    ///   along the x-axis and `dy` units along the y-axis.
+    func offsetBy(dx: CGFloat, dy: CGFloat) -> CGPoint {
         return CGPoint(
-            x: self.x + x,
-            y: self.y + y
+            x: x + dx,
+            y: y + dy
         )
     }
 }

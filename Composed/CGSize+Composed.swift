@@ -50,7 +50,7 @@ public extension CGSize {
         return insetBy(x: -x, y: -y)
     }
     
-    /// The size whose `width` and `height`
+    /// The `CGSize` whose `width` and `height`
     /// are both `CGFloat.greatestFiniteMagnitude`
     static var max: CGSize {
         return CGSize(

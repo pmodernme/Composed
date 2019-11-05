@@ -30,9 +30,8 @@ public enum Corner {
     ///
     /// The top left refers to the `maxX` and `maxY` coordinates of a `CGRect`.
     case bottomRight(CGPoint)
-    
-//    TODO:
-//    case topLeading, topTrailing, bottomLeading, bottomTrailing
+
+//  TODO: topLeading, topTrailing, bottomLeading, bottomTrailing
     
     /// Returns a `CGRect` with the given `size` and whose `origin` is derived from the receiver.
     ///

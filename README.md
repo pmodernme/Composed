@@ -2,8 +2,6 @@
 
 **Make designing views in `layoutSubviews()` simpler with extensions to `CoreGraphics` structs such as `CGRect`, `CGSize`, and `CGPoint`.**
 
-Composed is in its early stages of development. Thanks for your interest!
-
 ## Features
 
 - [x] Create `CGRect` from `CGSize` by pinning to a `CGPoint`

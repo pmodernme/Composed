@@ -10,11 +10,13 @@
 		BFB3C86923709A70007B72D5 /* CGPoint+Composed.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB3C86823709A70007B72D5 /* CGPoint+Composed.swift */; };
 		BFB3C86D2370B155007B72D5 /* UIView+Composed.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB3C86C2370B155007B72D5 /* UIView+Composed.swift */; };
 		BFCC0186236F3984004EE0A1 /* Composed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCC017C236F3983004EE0A1 /* Composed.framework */; };
-		BFCC018B236F3984004EE0A1 /* ComposedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCC018A236F3984004EE0A1 /* ComposedTests.swift */; };
+		BFCC018B236F3984004EE0A1 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCC018A236F3984004EE0A1 /* Tests.swift */; };
 		BFCC018D236F3984004EE0A1 /* Composed.h in Headers */ = {isa = PBXBuildFile; fileRef = BFCC017F236F3983004EE0A1 /* Composed.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFCC019A236F3C82004EE0A1 /* CGSize+Composed.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCC0199236F3C82004EE0A1 /* CGSize+Composed.swift */; };
 		BFCC019E236F3EB3004EE0A1 /* Corner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCC019D236F3EB3004EE0A1 /* Corner.swift */; };
 		BFCC01F0236F510A004EE0A1 /* CGRect+Composed.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCC01EF236F510A004EE0A1 /* CGRect+Composed.swift */; };
+		BFE8E7302372040E0045589B /* Composed.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BFE8E72F2372040E0045589B /* Composed.podspec */; };
+		BFE8E732237205750045589B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BFE8E731237205750045589B /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,11 +36,13 @@
 		BFCC017F236F3983004EE0A1 /* Composed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Composed.h; sourceTree = "<group>"; };
 		BFCC0180236F3983004EE0A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFCC0185236F3984004EE0A1 /* ComposedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComposedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFCC018A236F3984004EE0A1 /* ComposedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposedTests.swift; sourceTree = "<group>"; };
+		BFCC018A236F3984004EE0A1 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		BFCC018C236F3984004EE0A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFCC0199236F3C82004EE0A1 /* CGSize+Composed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Composed.swift"; sourceTree = "<group>"; };
 		BFCC019D236F3EB3004EE0A1 /* Corner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Corner.swift; sourceTree = "<group>"; };
 		BFCC01EF236F510A004EE0A1 /* CGRect+Composed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Composed.swift"; sourceTree = "<group>"; };
+		BFE8E72F2372040E0045589B /* Composed.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Composed.podspec; sourceTree = "<group>"; };
+		BFE8E731237205750045589B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 		BFCC0172236F3983004EE0A1 = {
 			isa = PBXGroup;
 			children = (
+				BFE8E72F2372040E0045589B /* Composed.podspec */,
+				BFE8E731237205750045589B /* LICENSE */,
 				BFCC017E236F3983004EE0A1 /* Composed */,
 				BFCC0189236F3984004EE0A1 /* ComposedTests */,
 				BFCC017D236F3983004EE0A1 /* Products */,
@@ -95,7 +101,7 @@
 		BFCC0189236F3984004EE0A1 /* ComposedTests */ = {
 			isa = PBXGroup;
 			children = (
-				BFCC018A236F3984004EE0A1 /* ComposedTests.swift */,
+				BFCC018A236F3984004EE0A1 /* Tests.swift */,
 				BFCC018C236F3984004EE0A1 /* Info.plist */,
 			);
 			path = ComposedTests;
@@ -194,6 +200,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE8E732237205750045589B /* LICENSE in Resources */,
+				BFE8E7302372040E0045589B /* Composed.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFCC018B236F3984004EE0A1 /* ComposedTests.swift in Sources */,
+				BFCC018B236F3984004EE0A1 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +383,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0b;
+				MARKETING_VERSION = 0.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.zvb.Composed;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -402,7 +410,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0b;
+				MARKETING_VERSION = 0.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.zvb.Composed;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

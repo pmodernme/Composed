@@ -1,12 +1,15 @@
-Pod::Spec.new do |spec|
-  spec.name         = "Composed"
-  spec.version      = "0.1.0"
-  spec.license      = { :type => "MIT", :file => "LICENSE" }
-  spec.homepage     = "https://github.com/pmodernme/Composed"
-  spec.author       = { "Zoe Van Brunt" => "pmodernme@gmail.com" }
-  spec.summary      = "Extensions to `CoreGraphics` structs for simple manual layout."
-  spec.description  = "Composed makes designing views in `layoutSubviews()` simpler with extensions to `CoreGraphics` structs such as `CGRect`, `CGSize`, and `CGPoint`."
-  spec.source       = { :git => "https://github.com/pmodernme/Composed.git", :tag => 'v0.1.0b' }
-  spec.source_files  = "Composed/*"
-  spec.requires_arc = true
+Pod::Spec.new do |s|
+  s.name            = "Composed"
+  s.version         = "0.1.0"
+  s.license         = { :type => "MIT", :file => "LICENSE" }
+  s.homepage        = "https://github.com/pmodernme/Composed"
+  s.author          = { "Zoe Van Brunt" => "pmodernme@gmail.com" }
+  s.summary         = "Extensions to `CoreGraphics` structs for simple manual layout."
+  s.description     = "Composed makes designing views in `layoutSubviews()` simpler with extensions to `CoreGraphics` structs such as `CGRect`, `CGSize`, and `CGPoint`."
+  
+  s.platform        = :ios, '8.0'
+  s.requires_arc    = true
+  
+  s.source          = { :git => "https://github.com/pmodernme/Composed.git", :tag => s.version }
+  s.source_files    = "Composed/*"
 end

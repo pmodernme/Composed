@@ -139,6 +139,18 @@ class ComposedTests: XCTestCase {
         size = originalSize
         size -= otherSize
         XCTAssertEqual(size, CGSize(width: 95, height: 40))
+        
+        let originalPoint = CGPoint(x: 100, y: 50)
+        let otherPoint = CGPoint(x: 5, y: 10)
+        
+        var point = originalPoint
+        
+        point += otherPoint
+        XCTAssertEqual(point, CGPoint(x: 105, y: 60))
+        
+        point = originalPoint
+        point -= otherPoint
+        XCTAssertEqual(point, CGPoint(x: 95, y: 40))
     }
     
     func testSizeThatFits() {

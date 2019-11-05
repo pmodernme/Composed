@@ -109,6 +109,7 @@ public extension Array where Element == CGSize {
 }
 
 extension CGSize: AdditiveArithmetic {
+    
     public static func + (left: CGSize, right: CGSize) -> CGSize {
         return CGSize(
             width: left.width + right.width,

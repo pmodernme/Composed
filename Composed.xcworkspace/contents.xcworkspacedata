@@ -2,16 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/zvb/Documents/Code/Swift/Composed/README.md">
-   </FileRef>
-   <Group
-      location = "container:img"
-      name = "img">
-      <FileRef
-         location = "group:relational.png">
-      </FileRef>
-   </Group>
-   <FileRef
       location = "group:Composed.xcodeproj">
    </FileRef>
    <FileRef

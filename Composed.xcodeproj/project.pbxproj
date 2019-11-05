@@ -44,6 +44,7 @@
 		BFE8E72F2372040E0045589B /* Composed.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Composed.podspec; sourceTree = "<group>"; };
 		BFE8E731237205750045589B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		BFE8E733237207290045589B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = /Users/zvb/Documents/Code/Swift/Composed/README.md; sourceTree = "<absolute>"; };
+		BFE8E7342372079A0045589B /* relational.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = relational.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				BFE8E733237207290045589B /* README.md */,
+				BFE8E7352372079A0045589B /* img */,
 				BFE8E72F2372040E0045589B /* Composed.podspec */,
 				BFE8E731237205750045589B /* LICENSE */,
 				BFCC017E236F3983004EE0A1 /* Composed */,
@@ -108,6 +110,15 @@
 			);
 			path = ComposedTests;
 			sourceTree = "<group>";
+		};
+		BFE8E7352372079A0045589B /* img */ = {
+			isa = PBXGroup;
+			children = (
+				BFE8E7342372079A0045589B /* relational.png */,
+			);
+			name = img;
+			path = /Users/zvb/Documents/Code/Swift/Composed/img;
+			sourceTree = "<absolute>";
 		};
 /* End PBXGroup section */
 

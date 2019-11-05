@@ -6,7 +6,7 @@
 //  Copyright © 2019 Zoe Van Brunt. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 public extension CGSize {
     

@@ -43,6 +43,7 @@
 		BFCC01EF236F510A004EE0A1 /* CGRect+Composed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Composed.swift"; sourceTree = "<group>"; };
 		BFE8E72F2372040E0045589B /* Composed.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Composed.podspec; sourceTree = "<group>"; };
 		BFE8E731237205750045589B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		BFE8E733237207290045589B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = /Users/zvb/Documents/Code/Swift/Composed/README.md; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +68,7 @@
 		BFCC0172236F3983004EE0A1 = {
 			isa = PBXGroup;
 			children = (
+				BFE8E733237207290045589B /* README.md */,
 				BFE8E72F2372040E0045589B /* Composed.podspec */,
 				BFE8E731237205750045589B /* LICENSE */,
 				BFCC017E236F3983004EE0A1 /* Composed */,

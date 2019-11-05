@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:README.md">
+      location = "group:/Users/zvb/Documents/Code/Swift/Composed/README.md">
    </FileRef>
    <Group
       location = "container:img"

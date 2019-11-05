@@ -9,7 +9,7 @@
 import XCTest
 @testable import Composed
 
-class ComposedTests: XCTestCase {
+class Tests: XCTestCase {
     var result: CGRect = .zero
     var expected: CGRect = .zero
     

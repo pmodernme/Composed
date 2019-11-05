@@ -1,6 +1,6 @@
 #  Composed
 
-**Make designing views in `layoutSubviews()` simpler with extensions to `CGGeometry` structs such as `CGRect`, `CGSize`, and `CGPoint`.**
+**Make designing views in `layoutSubviews()` simpler with extensions to `CoreGraphics` structs such as `CGRect`, `CGSize`, and `CGPoint`.**
 
 Composed is in its early stages of development. Thanks for your interest!
 
@@ -20,7 +20,7 @@ The core concept of layout using `Composed` is making manual layout easier to re
 boxView.frame = CGSize(width: 200, height: 125)
     .setCenter(bounds.center)
     
-// CGGeometry
+// CoreGraphics
 let boxSize = CGSize(width: 200, height: 125)
 boxView.frame = CGRect(
     x: bounds.midX - boxSize.width/2,
@@ -54,7 +54,7 @@ bottomLabel.frame = bottomLabel
         )
 )
 
-// CGGeometry
+// CoreGraphics
 let topLabelSize = topLabel.sizeThatFits(
     CGSize(
         width: boxSize.width,

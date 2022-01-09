@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Composed",
+        "repositoryURL": "/Volumes/VelcroDog/Code/Swift/Composed",
+        "state": {
+          "branch": "package",
+          "revision": "6d72e258197ab9d63e1a0e20cd20428eeb6940f8",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

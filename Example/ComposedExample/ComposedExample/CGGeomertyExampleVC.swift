@@ -1,12 +1,12 @@
 //
-//  CGGeometryExampleVC.swift
+//  CGGeomertyExampleVC.swift
 //  ComposedExample
 //
-//  Created by Zoe Van Brunt on 11/4/19.
-//  Copyright © 2019 Zoe Van Brunt. All rights reserved.
+//  Created by Zoe Van Brunt on 1/9/22.
 //
 
 import UIKit
+import SwiftUI
 
 class CGGeometryExampleVC: UIViewController {
     override func loadView() {
@@ -86,15 +86,10 @@ class CGGeometryExampleView: UIView {
     }
 }
 
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-@available(iOS 13.0, *)
 struct CGGeometryExampleVC_Preview: PreviewProvider {
     static var previews: some View {
         UIViewControllerPreview {
-            return CGGeometryExampleVC()
+            CGGeometryExampleVC()
         }
     }
 }
-#endif

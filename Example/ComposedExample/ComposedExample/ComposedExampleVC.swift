@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 import Composed
 
 class ComposedExampleVC: UIViewController {
@@ -63,7 +64,7 @@ class ComposedExampleView: UIView {
                     boxView.frame.corners.topLeft.point
                         .offsetBy(dx: 0, dy: -4)
                 )
-        )
+            )
         
         let insetBox = boxView.frame.insetBy(dx: 6, dy: 4)
         bottomLabel.frame = intersection(
@@ -77,15 +78,10 @@ class ComposedExampleView: UIView {
     }
 }
 
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-@available(iOS 13.0, *)
 struct ComposedExampleVC_Preview: PreviewProvider {
     static var previews: some View {
         UIViewControllerPreview {
-            return ComposedExampleVC()
+            ComposedExampleVC()
         }
     }
 }
-#endif

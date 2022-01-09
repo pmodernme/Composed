@@ -30,6 +30,17 @@ public extension CGSize {
             height: height)
     }
     
+    func override(width: CGFloat? = nil, height: CGFloat? = nil) -> CGSize {
+        var size = self
+        if let width = width {
+            size.width = width
+        }
+        if let height = height {
+            size.height = height
+        }
+        return size
+    }
+    
     /// Returns a `CGSize` that is smaller or larger than the receiver.
     ///
     /// - Parameters:
@@ -44,6 +55,10 @@ public extension CGSize {
     ///   are negative values, the size is increased.
     func insetBy(dx: CGFloat, dy: CGFloat) -> CGSize {
         return CGSize(width: width - (2*dx), height: height - (2*dy))
+    }
+    
+    func insetBy(size: CGSize) -> CGSize {
+        return CGSize(width: width - size.width, height: height - size.height)
     }
     
     /// Returns a `CGSize` by adding `2*x` and `2*y` to
@@ -62,6 +77,12 @@ public extension CGSize {
         return CGSize(
             width: CGFloat.greatestFiniteMagnitude,
             height: CGFloat.greatestFiniteMagnitude
+        )
+    }
+    
+    var integral: CGSize {
+        return CGSize(
+            width: ceil(width), height: ceil(height)
         )
     }
 }

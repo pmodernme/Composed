@@ -153,6 +153,8 @@ class ComposedTests: XCTestCase {
         XCTAssertEqual(point, CGPoint(x: 95, y: 40))
     }
     
+    #if canImport(UIKit)
+    
     func testSizeThatFits() {
         class TestView: UIView {
             override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -170,6 +172,8 @@ class ComposedTests: XCTestCase {
             CGSize(width: 500, height: 100)
         )
     }
+    
+    #endif
     
     func testUnion() {
         XCTAssertEqual(

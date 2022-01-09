@@ -85,6 +85,38 @@ public extension CGSize {
             width: ceil(width), height: ceil(height)
         )
     }
+    
+    func stackVertically(_ other: CGSize) -> CGSize {
+        CGSize(width: Swift.max(width, other.width),
+               height: height + other.height)
+    }
+    
+    func stackHorizontally(_ other: CGSize) -> CGSize {
+        CGSize(width: width + other.width,
+               height: Swift.max(height, other.height))
+    }
+    
+    init(square edge: CGFloat) {
+        self.init(width: edge, height: edge)
+    }
+    
+    var boundingSquare: CGSize {
+        let longestSize = Swift.max(width, height)
+        return CGSize(square: longestSize)
+    }
+}
+
+/// Returns a size that is the max width and max height of the sizes
+public func max(_ sizes: CGSize...) -> CGSize {
+    if sizes.count < 2, let size = sizes.first { return size }
+    if sizes.count == 0 { return .zero }
+    
+    return sizes[1...].reduce(sizes.first!) { result, size in
+        return CGSize(
+            width: max(result.width, size.width),
+            height: max(result.height, size.height)
+        )
+    }
 }
 
 /// Returns a `CGSize` whose `width` and `height`

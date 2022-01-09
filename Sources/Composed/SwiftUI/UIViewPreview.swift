@@ -1,6 +1,10 @@
-import UIKit
+#if canImport(UIKit)
+#if canImport(SwiftUI)
 
+import UIKit
 import SwiftUI
+
+@available(iOS 13.0, *)
 struct UIViewPreview<View: UIView>: UIViewRepresentable {
     let view: View
     
@@ -19,3 +23,6 @@ struct UIViewPreview<View: UIView>: UIViewRepresentable {
         view.setContentHuggingPriority(.defaultHigh, for: .vertical)
     }
 }
+
+#endif
+#endif

@@ -18,6 +18,10 @@ public extension CGSize {
         return CGRect(origin: origin, size: self)
     }
     
+    func setOrigin(x: CGFloat, y: CGFloat) -> CGRect {
+        return setOrigin(CGPoint(x: x, y: y))
+    }
+    
     /// Returns a `CGRect` by centering the receiver at `center`.
     ///
     /// - Parameters:

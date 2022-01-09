@@ -45,9 +45,13 @@ public extension UIView {
     final func heightFor(width: CGFloat) -> CGFloat {
         return sizeThatFits(width: width).height
     }
-    
-    final func subview(of view: UIView, above subview: UIView? = nil) -> Self {
-        return self.withModifier {
+}
+
+public protocol LazyFriendly { }
+
+extension LazyFriendly where Self: UIView {
+    func subview(of view: UIView, above subview: UIView? = nil) -> Self {
+        return self.apply {
             if let subview = subview {
                 view.insertSubview($0, aboveSubview: subview)
             } else {
@@ -56,42 +60,44 @@ public extension UIView {
         }
     }
     
-    final func withContentMode(_ contentMode: UIView.ContentMode) -> Self {
-        return self.withModifier { $0.contentMode = contentMode }
+    func withContentMode(_ contentMode: UIView.ContentMode) -> Self {
+        return self.apply { $0.contentMode = contentMode }
     }
     
-    final func withAlpha(_ alpha: CGFloat) -> Self {
-        return self.withModifier { $0.alpha = alpha }
+    func withAlpha(_ alpha: CGFloat) -> Self {
+        return self.apply { $0.alpha = alpha }
     }
     
-    final func withHidden(_ isHidden: Bool) -> Self {
-        return self.withModifier { $0.isHidden = isHidden }
+    func withHidden(_ isHidden: Bool) -> Self {
+        return self.apply { $0.isHidden = isHidden }
     }
     
-    final func withVisible(_ visible: Bool) -> Self {
-        return self.withModifier { $0.isHidden = !visible }
+    func withVisible(_ visible: Bool) -> Self {
+        return self.apply { $0.isHidden = !visible }
     }
     
-    final func withBackgroundColor(_ color: UIColor) -> Self {
-        return self.withModifier { $0.backgroundColor = color }
+    func withBackgroundColor(_ color: UIColor) -> Self {
+        return self.apply { $0.backgroundColor = color }
     }
     
-    final func withCornerRadius(_ radius: CGFloat) -> Self {
-        return self.withModifier { $0.layer.cornerRadius = radius }
+    func withCornerRadius(_ radius: CGFloat) -> Self {
+        return self.apply { $0.layer.cornerRadius = radius }
     }
     
-    final func withTintColor(_ color: UIColor) -> Self {
-        return self.withModifier { $0.tintColor = color }
+    func withTintColor(_ color: UIColor) -> Self {
+        return self.apply { $0.tintColor = color }
     }
     
-    final func withClipsToBounds(_ clipsToBounds: Bool) -> Self {
-        return self.withModifier { $0.clipsToBounds = clipsToBounds }
+    func withClipsToBounds(_ clipsToBounds: Bool) -> Self {
+        return self.apply { $0.clipsToBounds = clipsToBounds }
     }
     
-    internal func withModifier(_ modifier: (Self) -> Void) -> Self {
+    func apply(_ modifier: (Self) -> Void) -> Self {
         modifier(self)
         return self
     }
 }
+
+extension UIView: LazyFriendly { }
 
 #endif

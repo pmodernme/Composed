@@ -1,5 +1,10 @@
+#if canImport(UIKit)
+#if canImport(SwiftUI)
+
 import UIKit
 import SwiftUI
+
+@available(iOS 13.0, *)
 struct UIViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
     let viewController: ViewController
     
@@ -17,3 +22,6 @@ struct UIViewControllerPreview<ViewController: UIViewController>: UIViewControll
         return
     }
 }
+
+#endif
+#endif

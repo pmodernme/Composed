@@ -16,6 +16,10 @@ extension Bundle {
 
 extension String {
 	public init(localized key: String) {
-        self.init(stringLiteral: Bundle.main.localizedString(forKey: key))
+        self.init(Bundle.main.localizedString(forKey: key))
 	}
+    
+    public init(localized format: String, _ arguments: CVarArg...) {
+        self.init(String.localizedStringWithFormat(String(localized: format), arguments))
+    }
 }

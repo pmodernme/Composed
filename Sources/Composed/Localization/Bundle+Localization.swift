@@ -20,6 +20,6 @@ extension String {
 	}
     
     public init(localized format: String, _ arguments: CVarArg...) {
-        self.init(stringLiteral: String.localizedStringWithFormat(String(localized: format), arguments))
+        self.init(format: String(localized: format), locale: Locale.current, arguments: arguments)
     }
 }

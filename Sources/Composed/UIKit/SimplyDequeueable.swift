@@ -14,12 +14,12 @@ public protocol SimplyDequeueable {
 	static var standardReuseIdentifier: String { get }
 }
 
-extension SimplyDequeueable where Self: UITableViewCell {
-	public static func register(with tableView: UITableView) {
+public extension SimplyDequeueable where Self: UITableViewCell {
+    static func register(with tableView: UITableView) {
 		tableView.register(self, forCellReuseIdentifier: standardReuseIdentifier)
 	}
 
-	public static func dequeue(from tableView: UITableView, indexPath: IndexPath) -> Self {
+    static func dequeue(from tableView: UITableView, indexPath: IndexPath) -> Self {
 		guard let cell = tableView
 			.dequeueReusableCell(withIdentifier: standardReuseIdentifier, for: indexPath)
 			as? Self else { fatalError("Simply Dequeueable Cell not registered with Table View") }
@@ -27,12 +27,12 @@ extension SimplyDequeueable where Self: UITableViewCell {
 	}
 }
 
-extension SimplyDequeueable where Self: UITableViewHeaderFooterView {
-	public static func registerHeaderFooter(with tableView: UITableView) {
+public extension SimplyDequeueable where Self: UITableViewHeaderFooterView {
+    static func registerHeaderFooter(with tableView: UITableView) {
 		tableView.register(self, forHeaderFooterViewReuseIdentifier: standardReuseIdentifier)
 	}
 
-	public static func dequeue(from tableView: UITableView, section: Int) -> Self {
+    static func dequeue(from tableView: UITableView, section: Int) -> Self {
 		guard let view = tableView
 			.dequeueReusableHeaderFooterView(withIdentifier: standardReuseIdentifier)
 			as? Self else { fatalError("Simply Dequeueable Header Footer View not registered with Table View") }

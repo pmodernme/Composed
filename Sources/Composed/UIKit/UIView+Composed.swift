@@ -49,7 +49,7 @@ public extension UIView {
 
 public protocol LazyFriendly { }
 
-extension LazyFriendly where Self: UIView {
+public extension LazyFriendly where Self: UIView {
     func subview(of view: UIView, above subview: UIView? = nil) -> Self {
         return self.apply {
             if let subview = subview {

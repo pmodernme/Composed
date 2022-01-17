@@ -8,7 +8,7 @@
 
 import CoreImage
 
-extension CIImage {
+public extension CIImage {
     /// Inverts the colors and creates a transparent image by converting the mask to alpha.
     /// Input image should be black and white.
     var transparent: CIImage? {

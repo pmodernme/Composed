@@ -34,7 +34,7 @@ public extension CGSize {
             height: height)
     }
     
-    func placeAt(x: CGFloat? = nil, y: CGFloat? = nil, midX: CGFloat? = nil, midY: CGFloat? = nil, maxX: CGFloat? = nil, maxY: CGFloat? = nil) -> CGRect {
+    func placeAt(x: CGFloat? = nil, midX: CGFloat? = nil, maxX: CGFloat? = nil, y: CGFloat? = nil, midY: CGFloat? = nil, maxY: CGFloat? = nil) -> CGRect {
         var origin: CGPoint = .zero
         
         if let x = x { origin.x = x }

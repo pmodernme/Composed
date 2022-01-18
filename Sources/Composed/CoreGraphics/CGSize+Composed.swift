@@ -34,6 +34,20 @@ public extension CGSize {
             height: height)
     }
     
+    func placeAt(x: CGFloat? = nil, y: CGFloat? = nil, midX: CGFloat? = nil, midY: CGFloat? = nil, maxX: CGFloat? = nil, maxY: CGFloat? = nil) -> CGRect {
+        var origin: CGPoint = .zero
+        
+        if let x = x { origin.x = x }
+        else if let midX = midX { origin.x = midX - width/2 }
+        else if let maxX = maxX { origin.x = maxX - width }
+        
+        if let y = y { origin.y = y }
+        else if let midY = midY { origin.y = midY - width/2 }
+        else if let maxY = maxY { origin.y = maxY - width }
+        
+        return CGRect(origin: origin, size: self)
+    }
+    
     func override(width: CGFloat? = nil, height: CGFloat? = nil) -> CGSize {
         var size = self
         if let width = width {

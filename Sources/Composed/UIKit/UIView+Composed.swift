@@ -50,6 +50,12 @@ public extension UIView {
 public protocol LazyFriendly { }
 
 public extension LazyFriendly where Self: UIView {
+    
+    func subview(of view: UIView) -> Self {
+        view.addSubview(self)
+        return self
+    }
+    
     func subview(of view: UIView, above subview: UIView? = nil) -> Self {
         return self.apply {
             if let subview = subview {
@@ -58,6 +64,11 @@ public extension LazyFriendly where Self: UIView {
                 view.addSubview($0)
             }
         }
+    }
+    
+    func subview(of view: UIView, below subview: UIView) -> Self {
+        view.insertSubview(self, belowSubview: subview)
+        return self
     }
     
     func withContentMode(_ contentMode: UIView.ContentMode) -> Self {

@@ -58,11 +58,11 @@ public extension CGRect {
 
 public extension CGSize {
     func inset(by insets: UIEdgeInsets) -> CGSize {
-        return insetBy(dx: insets.width, dy: insets.height)
+        return CGSize(width: width - insets.width, height: height - insets.height)
     }
     
     func expanded(by insets: UIEdgeInsets) -> CGSize {
-        return expandedBy(dx: insets.width, dy: insets.height)
+        return CGSize(width: width + insets.width, height: height + insets.height)
     }
 }
 

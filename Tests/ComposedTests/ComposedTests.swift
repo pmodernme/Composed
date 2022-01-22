@@ -173,6 +173,35 @@ class ComposedTests: XCTestCase {
         )
     }
     
+    func testEdgeInsets() {
+        let insets = UIEdgeInsets(horizontal: 8, vertical: 4)
+        
+        XCTAssertEqual(insets, UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8))
+        XCTAssertEqual(insets.inverse, UIEdgeInsets(top: -4, left: -8, bottom: -4, right: -8))
+        XCTAssertEqual(insets.width, 16)
+        XCTAssertEqual(insets.height, 8)
+        
+        let squareInsets = UIEdgeInsets(16)
+        XCTAssertEqual(squareInsets, UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
+        
+        XCTAssertEqual(squareInsets - insets, UIEdgeInsets(top: 12, left: 8, bottom: 12, right: 8))
+        
+        var arithmeticInsets = insets
+        arithmeticInsets += squareInsets
+        XCTAssertEqual(arithmeticInsets, UIEdgeInsets(top: 20, left: 24, bottom: 20, right: 24))
+        arithmeticInsets -= squareInsets
+        XCTAssertEqual(arithmeticInsets, insets)
+        
+        let rect = CGRect(x: 20, y: 40, width: 400, height: 150)
+        let rectInsets = UIEdgeInsets(top: 10, left: 5, bottom: 100, right: 200)
+        XCTAssertEqual(rect.expanded(by: rectInsets), CGRect(x: 15, y: 30, width: 605, height: 260))
+        XCTAssertEqual(rect.expanded(by: rectInsets).inset(by: rectInsets), rect)
+        
+        let size = CGSize(width: 400, height: 150)
+        XCTAssertEqual(size.expanded(by: rectInsets), CGSize(width: 605, height: 260))
+        XCTAssertEqual(size.expanded(by: rectInsets).inset(by: rectInsets), size)
+    }
+    
     #endif
     
     func testUnion() {

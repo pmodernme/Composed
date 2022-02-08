@@ -125,17 +125,19 @@ public extension AdjustsScrollViewForKeyboard {
             let intersection = view.convert(endFrame, from: view.window)
                 .intersection(view.bounds)
             
-            if intersection == CGRect.null {
-                view.contentInset.bottom = 0
-            } else {
-                view.contentInset.bottom = intersection.height
+            UIView.animate(withDuration: event.duration ?? 0.3) {
+                if intersection == CGRect.null {
+                    view.contentInset.bottom = 0
+                } else {
+                    view.contentInset.bottom = intersection.height
+                }
             }
         }
         
         keyboardListener = KeyboardListener(operationQueue: .main)
             .onWillShow(action)
-            .onDidHide { event in UIView.animate(withDuration: 0.3) { action(event) }}
-            .onDidChange { event in UIView.animate(withDuration: 0.3) { action(event) }}
+            .onDidHide { event in action(event) }
+            .onDidChange { event in action(event) }
     }
 }
 

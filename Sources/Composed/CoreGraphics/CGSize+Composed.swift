@@ -42,8 +42,8 @@ public extension CGSize {
         else if let maxX = maxX { origin.x = maxX - width }
         
         if let y = y { origin.y = y }
-        else if let midY = midY { origin.y = midY - width/2 }
-        else if let maxY = maxY { origin.y = maxY - width }
+        else if let midY = midY { origin.y = midY - height/2 }
+        else if let maxY = maxY { origin.y = maxY - height }
         
         return CGRect(origin: origin, size: self)
     }

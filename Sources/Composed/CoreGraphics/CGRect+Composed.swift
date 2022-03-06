@@ -32,4 +32,23 @@ public extension CGRect {
         size = CGSize(width: size.width - (minX + maxX), height: size.height - (minY + maxY))
         return CGRect(origin: origin, size: size)
     }
+    
+    func fitToAspect(_ ratio: CGFloat) -> CGRect {
+        let hFirstWidth = ratio * height
+        if hFirstWidth < width {
+            return CGSize(width: hFirstWidth, height: height).setCenter(center)
+        } else {
+            let wFirstHeight = width / ratio
+            return CGSize(width: width, height: wFirstHeight).setCenter(center)
+        }
+    }
+    
+    func maxAspect(_ ratio: CGFloat) -> CGRect {
+        let currentRatio = width / height
+        if currentRatio > ratio {
+            return fitToAspect(ratio)
+        } else {
+            return self
+        }
+    }
 }

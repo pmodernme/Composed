@@ -11,27 +11,32 @@
 import UIKit
 
 public extension UIImage {
-    convenience init?(qrCodeString dataStr: String, size factor: CGFloat = 3, color: UIColor = .black) {
+    convenience init?(qrCodeString dataStr: String) {
         
-        guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
-        let data = dataStr.data(using: .ascii)
-        qrFilter.setValue(data, forKey: "inputMessage")
-        guard let qrImage = qrFilter.outputImage?.tinted(using: CIColor(color: color)) else { return nil }
+        guard let data = dataStr.data(using: .ascii),
+              let qrFilter = CIFilter(
+                name: "CIQRCodeGenerator",
+                parameters: [
+                    "inputMessage": data,
+                    "inputCorrectionLevel": "L"
+                ]
+              ),
+              let qrImage = qrFilter.outputImage
+        else { return nil }
         
-        let transform = CGAffineTransform(scaleX: factor, y: factor)
-        self.init(ciImage: qrImage.transformed(by: transform))
+        self.init(ciImage: qrImage, scale: 1/4, orientation: .up)
     }
 }
 
 public extension String {
-    func qrCode(size factor: CGFloat = 3, color: UIColor = .black) -> UIImage? {
-        return UIImage(qrCodeString: self, size: factor, color: color)
+    func qrCode() -> UIImage? {
+        return UIImage(qrCodeString: self)
     }
 }
 
 public extension URL {
-    func qrCode(size factor: CGFloat = 3, color: UIColor = .black) -> UIImage? {
-        return UIImage(qrCodeString: absoluteString, size: factor, color: color)
+    func qrCode() -> UIImage? {
+        return UIImage(qrCodeString: absoluteString)
     }
 }
 

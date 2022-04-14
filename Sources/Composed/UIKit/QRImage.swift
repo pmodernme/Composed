@@ -11,7 +11,7 @@
 import UIKit
 
 public extension UIImage {
-    convenience init?(qrCodeString dataStr: String) {
+    convenience init?(qrCodeString dataStr: String, scale: CGFloat = 4) {
         
         guard let data = dataStr.data(using: .ascii),
               let qrFilter = CIFilter(
@@ -24,19 +24,19 @@ public extension UIImage {
               let qrImage = qrFilter.outputImage
         else { return nil }
         
-        self.init(ciImage: qrImage, scale: 1/4, orientation: .up)
+        self.init(ciImage: qrImage, scale: 1/scale, orientation: .up)
     }
 }
 
 public extension String {
-    func qrCode() -> UIImage? {
-        return UIImage(qrCodeString: self)
+    func qrCode(scale: CGFloat = 4) -> UIImage? {
+        return UIImage(qrCodeString: self, scale: scale)
     }
 }
 
 public extension URL {
-    func qrCode() -> UIImage? {
-        return UIImage(qrCodeString: absoluteString)
+    func qrCode(scale: CGFloat = 4) -> UIImage? {
+        return UIImage(qrCodeString: absoluteString, scale: scale)
     }
 }
 

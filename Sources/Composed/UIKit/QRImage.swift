@@ -21,10 +21,11 @@ public extension UIImage {
                     "inputCorrectionLevel": "L"
                 ]
               ),
-              let qrImage = qrFilter.outputImage
+              let qrImage = qrFilter.outputImage,
+              let png = UIImage(ciImage: qrImage, scale: 1/scale, orientation: .up).pngData()
         else { return nil }
         
-        self.init(ciImage: qrImage, scale: 1/scale, orientation: .up)
+        self.init(data: png, scale: 1/scale)
     }
 }
 

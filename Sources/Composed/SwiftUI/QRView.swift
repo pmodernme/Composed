@@ -43,7 +43,7 @@ public struct QRView: UIViewRepresentable {
 @available(iOS 15.0, *)
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        QRView(string: "Testing, 1, 2, 3", scale: 1)
+        QRView(string: "Testing, 1, 2, 3", scale: 10)
     }
 }
 #endif

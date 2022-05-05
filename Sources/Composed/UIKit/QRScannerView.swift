@@ -20,39 +20,14 @@ public class QRScannerView: UIView {
     lazy var sessionLayer: AVCaptureVideoPreviewLayer = {
         let l = AVCaptureVideoPreviewLayer()
         layer.addSublayer(l)
-        l.session = self.captureSession
+        DispatchQueue.main.async { [weak self] in
+            self?.createCaptureSession()
+        }
         l.videoGravity = .resizeAspectFill
         return l
     }()
     
-    lazy var captureSession: AVCaptureSession? = {
-        let session = AVCaptureSession()
-        
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            
-            guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
-            let videoInput: AVCaptureDeviceInput
-            do {
-                videoInput = try AVCaptureDeviceInput(device: captureDevice)
-            } catch let error {
-                print(error)
-                return
-            }
-            if session.canAddInput(videoInput) { session.addInput(videoInput) } else { return }
-            
-            let metadataOutput = AVCaptureMetadataOutput()
-            if session.canAddOutput(metadataOutput) {
-                session.addOutput(metadataOutput)
-                metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-                metadataOutput.metadataObjectTypes = [.qr]
-            } else { return }
-            
-            session.startRunning()
-        }
-        
-        return session
-    }()
+    var captureSession: AVCaptureSession?
     
     public weak var delegate: QRScannerDelegate?
     
@@ -66,6 +41,33 @@ public class QRScannerView: UIView {
         case .portraitUpsideDown: sessionLayer.connection?.videoOrientation = .portraitUpsideDown
         default: sessionLayer.connection?.videoOrientation = .portrait
         }
+    }
+    
+    private func createCaptureSession() {
+        let session = AVCaptureSession()
+        
+        guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
+        let videoInput: AVCaptureDeviceInput
+        do {
+            videoInput = try AVCaptureDeviceInput(device: captureDevice)
+        } catch let error {
+            print(error)
+            return
+        }
+        if session.canAddInput(videoInput) { session.addInput(videoInput) } else { return }
+        
+        let metadataOutput = AVCaptureMetadataOutput()
+        if session.canAddOutput(metadataOutput) {
+            session.addOutput(metadataOutput)
+            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+            metadataOutput.metadataObjectTypes = [.qr]
+        } else { return }
+        
+        session.startRunning()
+        
+        self.captureSession = session
+        
+        sessionLayer.session = session
     }
 }
 

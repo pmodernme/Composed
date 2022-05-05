@@ -54,14 +54,14 @@ public class QRScannerView: UIView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        sessionLayer.frame = self.bounds
-        switch UIDevice.current.orientation {
-        case .portrait: sessionLayer.connection?.videoOrientation = .portrait
-        case .landscapeLeft: sessionLayer.connection?.videoOrientation = .landscapeRight
-        case .landscapeRight: sessionLayer.connection?.videoOrientation = .landscapeLeft
-        case .portraitUpsideDown: sessionLayer.connection?.videoOrientation = .portraitUpsideDown
-        default: sessionLayer.connection?.videoOrientation = .portrait
-        }
+        sessionLayer.frame = bounds.size.boundingSquare.setCenter(bounds.center)
+//        switch UIDevice.current.orientation {
+//        case .portrait: sessionLayer.connection?.videoOrientation = .portrait
+//        case .landscapeLeft: sessionLayer.connection?.videoOrientation = .landscapeRight
+//        case .landscapeRight: sessionLayer.connection?.videoOrientation = .landscapeLeft
+//        case .portraitUpsideDown: sessionLayer.connection?.videoOrientation = .portraitUpsideDown
+//        default: sessionLayer.connection?.videoOrientation = .portrait
+//        }
     }
 }
 

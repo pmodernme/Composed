@@ -28,24 +28,28 @@ public class QRScannerView: UIView {
     lazy var captureSession: AVCaptureSession? = {
         let session = AVCaptureSession()
         
-        guard let captureDevice = AVCaptureDevice.default(for: .video) else { return nil }
-        let videoInput: AVCaptureDeviceInput
-        do {
-            videoInput = try AVCaptureDeviceInput(device: captureDevice)
-        } catch let error {
-            print(error)
-            return nil
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
+            let videoInput: AVCaptureDeviceInput
+            do {
+                videoInput = try AVCaptureDeviceInput(device: captureDevice)
+            } catch let error {
+                print(error)
+                return
+            }
+            if session.canAddInput(videoInput) { session.addInput(videoInput) } else { return }
+            
+            let metadataOutput = AVCaptureMetadataOutput()
+            if session.canAddOutput(metadataOutput) {
+                session.addOutput(metadataOutput)
+                metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+                metadataOutput.metadataObjectTypes = [.qr]
+            } else { return }
+            
+            session.startRunning()
         }
-        if session.canAddInput(videoInput) { session.addInput(videoInput) } else { return nil }
-        
-        let metadataOutput = AVCaptureMetadataOutput()
-        if session.canAddOutput(metadataOutput) {
-            session.addOutput(metadataOutput)
-            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [.qr]
-        } else { return nil }
-        
-        session.startRunning()
         
         return session
     }()
@@ -54,14 +58,14 @@ public class QRScannerView: UIView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        sessionLayer.frame = bounds.size.boundingSquare.setCenter(bounds.center)
-//        switch UIDevice.current.orientation {
-//        case .portrait: sessionLayer.connection?.videoOrientation = .portrait
-//        case .landscapeLeft: sessionLayer.connection?.videoOrientation = .landscapeRight
-//        case .landscapeRight: sessionLayer.connection?.videoOrientation = .landscapeLeft
-//        case .portraitUpsideDown: sessionLayer.connection?.videoOrientation = .portraitUpsideDown
-//        default: sessionLayer.connection?.videoOrientation = .portrait
-//        }
+        sessionLayer.frame = bounds.size.boundingSquare.setCenter(bounds.center).expanded(by: UIEdgeInsets(100))
+        switch UIDevice.current.orientation {
+        case .portrait: sessionLayer.connection?.videoOrientation = .portrait
+        case .landscapeLeft: sessionLayer.connection?.videoOrientation = .landscapeRight
+        case .landscapeRight: sessionLayer.connection?.videoOrientation = .landscapeLeft
+        case .portraitUpsideDown: sessionLayer.connection?.videoOrientation = .portraitUpsideDown
+        default: sessionLayer.connection?.videoOrientation = .portrait
+        }
     }
 }
 

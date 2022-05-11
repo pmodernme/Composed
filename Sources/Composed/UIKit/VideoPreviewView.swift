@@ -5,19 +5,21 @@
 //  Created by Zoe Van Brunt on 5/6/22.
 //
 
+#if canImport(UIKit) && canImport(AVFoundation)
+
 import UIKit
 import AVKit
 
 public class VideoPreviewView: UIView {
     
-    var videoPreviewLayer: AVCaptureVideoPreviewLayer {
+    public var videoPreviewLayer: AVCaptureVideoPreviewLayer {
         guard let layer = layer as? AVCaptureVideoPreviewLayer else {
             fatalError("Expected `AVCaptureVideoPreviewLayer` type for layer. Check PreviewView.layerClass implementation.")
         }
         return layer
     }
     
-    var session: AVCaptureSession? {
+    public var session: AVCaptureSession? {
         get { videoPreviewLayer.session }
         set { videoPreviewLayer.session = newValue }
     }
@@ -39,3 +41,5 @@ public class VideoPreviewView: UIView {
     }
     
 }
+
+#endif

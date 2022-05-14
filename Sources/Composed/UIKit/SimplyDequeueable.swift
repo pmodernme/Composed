@@ -40,4 +40,17 @@ public extension SimplyDequeueable where Self: UITableViewHeaderFooterView {
 	}
 }
 
+public extension SimplyDequeueable where Self: UICollectionViewCell {
+    static func register(with collectionView: UICollectionView) {
+        collectionView.register(self, forCellWithReuseIdentifier: standardReuseIdentifier)
+    }
+    
+    static func dequeue(from collectionView: UICollectionView, indexPath: IndexPath) -> Self {
+        guard let cell = collectionView
+            .dequeueReusableCell(withReuseIdentifier: standardReuseIdentifier, for: indexPath)
+                as? Self else { fatalError("Simply Dequeueable Cell not registered with Collection View") }
+        return cell
+    }
+}
+
 #endif

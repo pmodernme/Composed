@@ -6,9 +6,7 @@
 //  Copyright © 2017 Zoe Van Brunt. All rights reserved.
 //
 
-#if canImport(UIKit)
-
-import UIKit
+import Foundation
 
 public extension Array {
     var nilIfEmpty: Array? {
@@ -30,27 +28,27 @@ public extension String {
         if isEmpty { return nil }
         return self
     }
-
-    func size(font: UIFont, width: CGFloat) -> CGSize {
-        let str = self as NSString
-        return str.boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude),
-                                options: [.usesLineFragmentOrigin],
-                                attributes: [NSAttributedString.Key.font: font],
-                                context: nil).size
-    }
+    
+    func ifEmpty(_ alternate: String) -> String { nilIfEmpty ?? alternate }
+    
+    var isBlank: Bool { trimmed.isEmpty }
+    
+    var nilIfBlank: String? { isBlank ? self : nil }
+    
+    func ifBlank(_ alternate: String) -> String { nilIfBlank ?? alternate }
     
     func forEachInstance(of string: String,
-                                options: String.CompareOptions = .caseInsensitive,
-                                range searchRange: Range<String.Index>? = nil,
-                                locale: Locale = .current,
-                                _ action: (Range<String.Index>) -> ()) {
+                         options: String.CompareOptions = .caseInsensitive,
+                         range searchRange: Range<String.Index>? = nil,
+                         locale: Locale = .current,
+                         _ action: (Range<String.Index>) -> ()) {
         var searchRange = searchRange ?? startIndex..<endIndex
         var rangeOfString: Range<String.Index>? = nil
         repeat {
             rangeOfString = range(of: string,
-                                options: options,
-                                range: searchRange,
-                                locale: locale)
+                                  options: options,
+                                  range: searchRange,
+                                  locale: locale)
             if let range = rangeOfString {
                 action(range)
                 searchRange = range.upperBound..<endIndex
@@ -98,7 +96,7 @@ public extension String {
     var emojiScalars: [UnicodeScalar] { emojis.flatMap { $0.unicodeScalars } }
     
     static var nonBreakingSpace: String { return String(Character.nonBreakingSpace)}
-
+    
 }
 
 public extension Character {
@@ -108,15 +106,13 @@ public extension Character {
         guard let firstScalar = unicodeScalars.first else { return false }
         return firstScalar.properties.isEmoji && firstScalar.value > 0x238C
     }
-
+    
     /// Checks if the scalars will be merged into an emoji
     @available(iOS 10.2, *)
     var isCombinedIntoEmoji: Bool { unicodeScalars.count > 1 && unicodeScalars.first?.properties.isEmoji ?? false }
-
+    
     @available(iOS 10.2, *)
     var isEmoji: Bool { isSimpleEmoji || isCombinedIntoEmoji }
     
     static var nonBreakingSpace: Character { "\u{00A0}" }
 }
-
-#endif

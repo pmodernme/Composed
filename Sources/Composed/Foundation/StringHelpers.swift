@@ -33,7 +33,7 @@ public extension String {
     
     var isBlank: Bool { trimmed.isEmpty }
     
-    var nilIfBlank: String? { isBlank ? self : nil }
+    var nilIfBlank: String? { isBlank ? nil : self }
     
     func ifBlank(_ alternate: String) -> String { nilIfBlank ?? alternate }
     

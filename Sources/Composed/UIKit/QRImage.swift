@@ -11,7 +11,9 @@
 import UIKit
 
 public extension UIImage {
-    convenience init?(qrCodeString dataStr: String, scale: CGFloat = 4) {
+    convenience init?(qrCodeString dataStr: String, scale: CGFloat = 4, foregroundColor: CIColor = CIColor(color: .black), backgroundColor: CIColor = CIColor(color: .white)) {
+        
+        let scale = UIScreen().scale * scale
         
         guard let data = dataStr.data(using: .ascii),
               let qrFilter = CIFilter(
@@ -21,7 +23,11 @@ public extension UIImage {
                     "inputCorrectionLevel": "L"
                 ]
               ),
-              let qrImage = qrFilter.outputImage,
+              let qrImage = qrFilter.outputImage?
+            .applyingFilter("CIFalseColor", parameters: [
+                "inputColor0": foregroundColor,
+                "inputColor1": backgroundColor
+            ]),
               let png = UIImage(ciImage: qrImage, scale: 1/scale, orientation: .up).pngData()
         else { return nil }
         

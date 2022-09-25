@@ -10,32 +10,24 @@
 import SwiftUI
 
 @available(iOS 13.0, *)
-public struct QRView: UIViewRepresentable {
+public struct QRView: View {
     
-    var string: String?
+    var string: String
     
-    var scale: CGFloat = 4
+    var scale: CGFloat = 1
     
-    public init(string: String?, scale: CGFloat = 4) {
-        self.string = string
-        self.scale = scale
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFit
-        view.layer.magnificationFilter = .nearest
-        self.view = view
+    var image: UIImage {
+        return UIImage(qrCodeString: string, scale: scale, foregroundColor: .black, backgroundColor: .clear)!
     }
     
-    private let view: UIImageView
-    
-    public func makeUIView(context: Context) -> UIImageView {
-        return view
+    public var body: some View {
+        Image(uiImage: image)
+            .renderingMode(.template)
+            .resizable()
+            .interpolation(.none)
+            .aspectRatio(contentMode: .fit)
     }
     
-    public func updateUIView(_ uiView: UIImageView, context: Context) {
-        uiView.image = string?.qrCode(scale: scale)
-        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-    }
 }
 
 #if DEBUG
@@ -43,7 +35,22 @@ public struct QRView: UIViewRepresentable {
 @available(iOS 15.0, *)
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        QRView(string: "Testing, 1, 2, 3", scale: 10)
+        VStack {
+            let string = "Testing 1, 2, 3"
+            
+            QRView(string: string, scale: 4)
+                .foregroundColor(.secondary)
+//                .background { Color.white.opacity(0.8) }
+                .padding()
+            Text(string)
+                .font(.caption)
+        }
+        .padding()
+        .background {
+            Color.green
+                .edgesIgnoringSafeArea(.all)
+        }
+        .previewLayout(.sizeThatFits)
     }
 }
 #endif

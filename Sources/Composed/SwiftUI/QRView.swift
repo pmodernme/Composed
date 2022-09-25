@@ -12,9 +12,14 @@ import SwiftUI
 @available(iOS 13.0, *)
 public struct QRView: View {
     
+    public init(string: String, scale: CGFloat = 1) {
+        self.string = string
+        self.scale = scale
+    }
+    
     var string: String
     
-    var scale: CGFloat = 1
+    var scale: CGFloat
     
     var image: UIImage {
         return UIImage(qrCodeString: string, scale: scale, foregroundColor: .black, backgroundColor: .clear)!

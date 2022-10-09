@@ -59,6 +59,12 @@ struct MaxVisibleViewPreference: PreferenceKey {
 
 @available(iOS 13.0, *)
 public struct FlowLayout<Element: Identifiable & Equatable, Cell: View>: View {
+    public init(items: [Element], cell: @escaping (Element) -> Cell, lastVisibleIndex: Int = 0) {
+        self.items = items
+        self.cell = cell
+        self.lastVisibleIndex = lastVisibleIndex
+    }
+    
     var items: [Element]
     var cell: (Element) -> Cell
     @State private var sizes: [Int: CGSize] = [:]

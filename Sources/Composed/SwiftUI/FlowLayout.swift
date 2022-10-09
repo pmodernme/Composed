@@ -58,7 +58,7 @@ struct MaxVisibleViewPreference: PreferenceKey {
 }
 
 @available(iOS 13.0, *)
-struct FlowLayout<Element: Identifiable & Equatable, Cell: View>: View {
+public struct FlowLayout<Element: Identifiable & Equatable, Cell: View>: View {
     var items: [Element]
     var cell: (Element) -> Cell
     @State private var sizes: [Int: CGSize] = [:]
@@ -86,7 +86,7 @@ struct FlowLayout<Element: Identifiable & Equatable, Cell: View>: View {
         }).id(measureStart..<measureEnd)
     }
     
-    var body: some View {
+    public var body: some View {
         let sizeIndices = self.sizes.keys.sorted()
         if !sizeIndices.isEmpty {
             assert(sizeIndices[0] == 0)

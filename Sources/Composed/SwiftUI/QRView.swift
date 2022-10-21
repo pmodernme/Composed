@@ -21,16 +21,20 @@ public struct QRView: View {
     
     var scale: CGFloat
     
-    var image: UIImage {
-        return UIImage(qrCodeString: string, scale: scale, foregroundColor: .black, backgroundColor: .clear)!
+    var image: UIImage? {
+        UIImage(qrCodeString: string, scale: scale, foregroundColor: .black, backgroundColor: .clear)
     }
     
     public var body: some View {
-        Image(uiImage: image)
-            .renderingMode(.template)
-            .resizable()
-            .interpolation(.none)
-            .aspectRatio(contentMode: .fit)
+        if let image = image {
+            Image(uiImage: image)
+                .renderingMode(.template)
+                .resizable()
+                .interpolation(.none)
+                .aspectRatio(contentMode: .fit)
+        } else {
+            EmptyView()
+        }
     }
     
 }

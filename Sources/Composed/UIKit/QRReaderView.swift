@@ -40,38 +40,49 @@ public class QRReaderView: VideoPreviewView {
         var metadataObject: AVMetadataObject?
     }
     
-    private let sessionQueue = DispatchQueue(label: "session queue")
+    private let sessionQueue = DispatchQueue(label: "session-queue")
     private let captureOutput = AVCaptureVideoDataOutput()
     
     private var qrOverlayLayersByString = [String: MetadataObjectLayer]()
     private var layerExpirationTimerByString = [String: Timer]()
     
     private func beginSession() {
-        sessionQueue.async { [weak self] in self?.configureSession() }
+        let setup = { [weak self] in
+            self?.sessionQueue.async { self?.configureSession() }
+        }
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+            case .authorized: setup()
+            case .notDetermined:
+                AVCaptureDevice.requestAccess(for: .video) { granted in
+                    if granted { setup() }
+                }
+            default: return
+        }
     }
     
     private func configureSession() {
+        
         let session = AVCaptureSession()
+
+        guard let captureDevice = AVCaptureDevice.default(for: .video),
+              let videoInput = try? AVCaptureDeviceInput(device: captureDevice),
+              session.canAddInput(videoInput) else { return }
+
+        let metadataOutput = AVCaptureMetadataOutput()
+        guard session.canAddOutput(metadataOutput) else { return }
         
         session.beginConfiguration()
         
         session.sessionPreset = .high
         
-        guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .unspecified),
-              let videoInput = try? AVCaptureDeviceInput(device: captureDevice),
-              session.canAddInput(videoInput) else { return }
-        
         session.addInput(videoInput)
         
-        let metadataOutput = AVCaptureMetadataOutput()
-        if session.canAddOutput(metadataOutput) {
-            session.addOutput(metadataOutput)
-            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [.qr]
-        } else { return }
+        session.addOutput(metadataOutput)
+        metadataOutput.metadataObjectTypes = [.qr]
+        metadataOutput.setMetadataObjectsDelegate(self, queue: .main)
         
         session.commitConfiguration()
-        
+
         session.startRunning()
         
         DispatchQueue.main.async { [weak self] in

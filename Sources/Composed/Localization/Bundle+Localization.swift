@@ -15,11 +15,13 @@ extension Bundle {
 }
 
 extension String {
-	public init(localized key: String) {
-        self.init(stringLiteral: Bundle.main.localizedString(forKey: key))
+    public init(localized key: String, bundle: Bundle = Bundle.main) {
+        self.init(stringLiteral: bundle.localizedString(forKey: key))
 	}
     
-    public init(localized format: String, _ arguments: CVarArg...) {
-        self.init(format: String(localized: format), locale: Locale.current, arguments: arguments)
+    public init(localized format: String, bundle: Bundle = Bundle.main, _ arguments: CVarArg...) {
+        let format = String(localized: format, bundle: bundle)
+        let result = String.localizedStringWithFormat(format, arguments)
+        self.init(stringLiteral: result)
     }
 }

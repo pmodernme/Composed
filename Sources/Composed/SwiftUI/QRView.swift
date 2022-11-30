@@ -8,22 +8,42 @@
 #if canImport(SwiftUI)
 
 import SwiftUI
+import CoreImage.CIFilterBuiltins
 
 @available(iOS 13.0, *)
 public struct QRView: View {
     
-    public init(string: String, scale: CGFloat = 1) {
+    public init(string: String) {
         self.string = string
-        self.scale = scale
     }
     
     var string: String
     
-    var scale: CGFloat
-    
     var image: UIImage? {
-        UIImage(qrCodeString: string, scale: scale, foregroundColor: .black, backgroundColor: .clear)
+        let failureImage = UIImage(systemName: "xmark.circle") ?? UIImage()
+        
+        qrGenerator.message = Data(string.utf8)
+        qrGenerator.correctionLevel = "L"
+        
+        guard let qrImage = qrGenerator.outputImage else {
+            return failureImage
+        }
+        
+        falseColor.color0 = CIColor(color: .black)
+        falseColor.color1 = CIColor(color: .clear)
+        falseColor.inputImage = qrImage
+        
+        guard let coloredImage = falseColor.outputImage,
+              let cgimg = context.createCGImage(coloredImage, from: coloredImage.extent) else {
+            return failureImage
+        }
+        
+        return UIImage(cgImage: cgimg)
     }
+    
+    let context = CIContext()
+    let qrGenerator = CIFilter.qrCodeGenerator()
+    let falseColor = CIFilter.falseColor()
     
     public var body: some View {
         if let image = image {
@@ -31,7 +51,7 @@ public struct QRView: View {
                 .renderingMode(.template)
                 .resizable()
                 .interpolation(.none)
-                .aspectRatio(contentMode: .fit)
+                .scaledToFit()
         } else {
             EmptyView()
         }
@@ -47,8 +67,8 @@ struct SwiftUIView_Previews: PreviewProvider {
         VStack {
             let string = "Testing 1, 2, 3"
             
-            QRView(string: string, scale: 4)
-                .foregroundColor(.secondary)
+            QRView(string: string)
+//                .foregroundColor(.secondary)
 //                .background { Color.white.opacity(0.8) }
                 .padding()
             Text(string)

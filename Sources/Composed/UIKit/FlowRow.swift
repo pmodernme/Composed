@@ -54,16 +54,16 @@ public class FlowRow: UIView {
     public override func layoutSubviews() {
         let insetBounds = bounds.inset(by: insets)
         
-        var x: CGFloat = 0
-        var y: CGFloat = 0
+        var x: CGFloat = insetBounds.minX
+        var y: CGFloat = insetBounds.minY
         var rowHeight: CGFloat = 0
         
         for view in subviews {
             let viewSize = view.sizeThatFits(insetBounds.size)
             
-            if x > 0, x + viewSize.width > insetBounds.width {
+            if x > insetBounds.minX, x + viewSize.width > insetBounds.width {
                 y += rowHeight + spacing.height
-                x = 0
+                x = insetBounds.minX
                 rowHeight = 0
             }
             

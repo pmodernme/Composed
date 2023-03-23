@@ -137,6 +137,19 @@ public func max(_ sizes: CGSize...) -> CGSize {
     }
 }
 
+/// Returns a size that is the min width and min height of the sizes
+public func min(_ sizes: CGSize...) -> CGSize {
+    if sizes.count < 2, let size = sizes.first { return size }
+    if sizes.count == 0 { return .zero }
+    
+    return sizes[1...].reduce(sizes.first!) { result, size in
+        return CGSize(
+            width: min(result.width, size.width),
+            height: min(result.height, size.height)
+        )
+    }
+}
+
 /// Returns a `CGSize` whose `width` and `height`
 /// are the combined maximum of all `sizes`
 ///

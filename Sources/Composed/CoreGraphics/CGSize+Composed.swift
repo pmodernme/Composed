@@ -192,7 +192,7 @@ public extension Array where Element == CGSize {
     }
 }
 
-extension CGSize: AdditiveArithmetic {
+extension CGSize: @retroactive AdditiveArithmetic {
     
     public static func + (left: CGSize, right: CGSize) -> CGSize {
         return CGSize(

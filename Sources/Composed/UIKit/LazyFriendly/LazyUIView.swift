@@ -9,8 +9,6 @@
 
 import UIKit
 
-extension UIView: LazyFriendly { }
-
 public extension LazyFriendly where Self: UIView {
 
     func subview(of view: UIView) -> Self {
@@ -63,11 +61,6 @@ public extension LazyFriendly where Self: UIView {
     
     func withClipsToBounds(_ clipsToBounds: Bool) -> Self {
         return self.apply { $0.clipsToBounds = clipsToBounds }
-    }
-    
-    func apply(_ modifier: (Self) -> Void) -> Self {
-        modifier(self)
-        return self
     }
 }
 

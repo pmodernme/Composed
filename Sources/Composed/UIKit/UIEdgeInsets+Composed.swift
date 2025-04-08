@@ -28,7 +28,7 @@ public extension UIEdgeInsets {
     }
 }
 
-extension UIEdgeInsets: AdditiveArithmetic {
+extension UIEdgeInsets: @retroactive AdditiveArithmetic {
     
     public static func + (left: UIEdgeInsets, right: UIEdgeInsets) -> UIEdgeInsets {
         return UIEdgeInsets(top: left.top + right.top,

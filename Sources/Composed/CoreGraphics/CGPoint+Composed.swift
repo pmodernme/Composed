@@ -36,7 +36,7 @@ public extension CGPoint {
     }
 }
 
-extension CGPoint: AdditiveArithmetic {
+extension CGPoint: @retroactive AdditiveArithmetic {
     
     public static func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
         return CGPoint(
